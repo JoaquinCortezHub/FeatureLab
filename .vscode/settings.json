@@ -1,5 +1,19 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "prettier.configPath": ".prettierrc"
+  "prettier.configPath": ".prettierrc",
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#4ea2bf",
+    "activityBar.background": "#4ea2bf",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#a43b89",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "statusBar.background": "#3a86a0",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#4ea2bf",
+    "statusBarItem.remoteBackground": "#3a86a0",
+    "statusBarItem.remoteForeground": "#e7e7e7"
+  },
+  "peacock.color": "#3A86A0"
 }
