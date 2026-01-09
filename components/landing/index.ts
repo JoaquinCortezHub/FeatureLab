@@ -1,4 +1,9 @@
 export { LandingReadMoreWrapper } from './LandingReadMoreWrapper';
+export { WaitlistForm } from './WaitlistForm';
+export { FloatingNodes } from './FloatingNodes';
+export { FeatureCard, FeatureShowcase } from './FeatureCard';
+export { FaqAccordion, faqData } from './FaqAccordion';
+export { UserPersonas } from './UserPersonas';
 export { LandingSocialProofBandItem } from './social-proof/LandingSocialProofBandItem';
 export { LandingTestimonialInline } from './testimonial/LandingTestimonialInline';
 export { LandingFeatureList } from './feature/LandingFeatureList';

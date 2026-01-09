@@ -3,243 +3,322 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import {
-  Sparkles,
-  ArrowRight,
-  Database,
+  MousePointer2,
   GitBranch,
-  BarChart3,
+  Sparkles,
+  Upload,
+  Eye,
+  Download,
+  Layers,
   Zap,
   Brain,
-  LineChart,
+  ArrowRight,
+  ArrowUpRight,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/shared/ui/button';
 import { Header } from '@/components/shared/Header';
-import { ThemeSwitch } from '@/components/shared/ThemeSwitch';
+import { WaitlistForm } from '@/components/landing/WaitlistForm';
+import { FloatingNodes } from '@/components/landing/FloatingNodes';
+import { FaqAccordion, faqData } from '@/components/landing/FaqAccordion';
+import { UserPersonas } from '@/components/landing/UserPersonas';
+import Image from '@/components/shared/Image';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 },
 };
 
-const staggerContainer = {
+const stagger = {
   animate: {
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.08,
     },
   },
 };
 
 export default function LandingPage() {
-  return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
-      <Header />
+  const features = [
+    {
+      icon: <MousePointer2 className="h-5 w-5" />,
+      title: 'Drag & Drop Canvas',
+      description:
+        'Move nodes around intuitively. Organize your workflow visually.',
+    },
+    {
+      icon: <GitBranch className="h-5 w-5" />,
+      title: 'Smart Connections',
+      description:
+        'Draw relationships between features. See correlation strength instantly.',
+    },
+    {
+      icon: <Sparkles className="h-5 w-5" />,
+      title: 'AI Insights',
+      description:
+        'Let AI surface patterns and anomalies you would have missed.',
+    },
+    {
+      icon: <Layers className="h-5 w-5" />,
+      title: 'Feature Stats',
+      description:
+        'Distributions, missing values, importance scores—all on canvas.',
+    },
+    {
+      icon: <Zap className="h-5 w-5" />,
+      title: 'Instant Charts',
+      description:
+        'Generate visualizations with one click. No code required.',
+    },
+    {
+      icon: <Brain className="h-5 w-5" />,
+      title: 'ML-Ready Export',
+      description:
+        'Export engineered features in formats ready for your stack.',
+    },
+  ];
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-32">
-        {/* Background gradient */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-br from-primary-100/40 via-secondary-100/30 to-transparent dark:from-primary-900/20 dark:via-secondary-900/10 rounded-full blur-3xl" />
+  const steps = [
+    {
+      number: '01',
+      icon: <Upload className="h-5 w-5" />,
+      title: 'Upload',
+      description: 'Drop your CSV. We parse instantly.',
+    },
+    {
+      number: '02',
+      icon: <Eye className="h-5 w-5" />,
+      title: 'Explore',
+      description: 'Create nodes. Draw connections. Discover.',
+    },
+    {
+      number: '03',
+      icon: <Download className="h-5 w-5" />,
+      title: 'Export',
+      description: 'Save insights. Build better models.',
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-black text-white antialiased relative">
+      <Header variant="dark" />
+
+      {/* Subtle textured background */}
+      <div className="fixed inset-0 -z-10 bg-black">
+        {/* Very subtle noise texture */}
+        <div 
+          className="absolute inset-0 opacity-[0.015]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            backgroundSize: '200px 200px',
+          }}
+        />
+        
+        {/* Very subtle grid pattern */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <svg className="w-full h-full">
+            <defs>
+              <pattern id="subtleGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#subtleGrid)" />
+          </svg>
         </div>
 
-        <div className="mx-auto max-w-6xl px-6">
-          <motion.div
-            className="text-center"
-            initial="initial"
-            animate="animate"
-            variants={staggerContainer}
-          >
+        {/* Blurred gradient overlays throughout the page */}
+        {/* Top left - hero area */}
+        <div className="absolute top-0 left-0 w-[800px] h-[600px] bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-transparent rounded-full blur-[120px]" />
+        
+        {/* Top center - hero area */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[500px] bg-gradient-to-b from-white/[0.06] via-white/[0.03] to-transparent rounded-full blur-[100px]" />
+        
+        {/* Center right - features area */}
+        <div className="absolute top-1/2 right-0 w-[700px] h-[600px] bg-gradient-to-l from-white/[0.05] via-white/[0.025] to-transparent rounded-full blur-[140px]" />
+        
+        {/* Center left - problem section */}
+        <div className="absolute top-[60%] left-0 w-[600px] h-[500px] bg-gradient-to-r from-white/[0.05] via-white/[0.025] to-transparent rounded-full blur-[120px]" />
+        
+        {/* Bottom center - CTA area */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-t from-white/[0.06] via-white/[0.03] to-transparent rounded-full blur-[130px]" />
+        
+        {/* Bottom right - footer area */}
+        <div className="absolute bottom-0 right-0 w-[500px] h-[400px] bg-gradient-to-tl from-white/[0.04] via-white/[0.02] to-transparent rounded-full blur-[110px]" />
+      </div>
+
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center pt-20">
+        <div className="mx-auto max-w-7xl px-6 w-full">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+            {/* Left column - Text */}
             <motion.div
-              variants={fadeInUp}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-4 py-1.5 text-sm text-primary-700 dark:border-primary-800 dark:bg-primary-900/30 dark:text-primary-300"
+              initial="initial"
+              animate="animate"
+              variants={stagger}
+              className="max-w-xl"
             >
-              <Sparkles className="h-4 w-4" />
-              AI-Powered Feature Engineering
-            </motion.div>
+              <motion.div
+                variants={fadeInUp}
+                transition={{ duration: 0.6 }}
+                className="mb-8"
+              >
+                <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary-400/60 font-medium">
+                  <span className="w-8 h-px bg-gradient-to-r from-primary-500/40 to-secondary-500/40" />
+                  Now in private beta
+                </span>
+              </motion.div>
 
-            <motion.h1
-              variants={fadeInUp}
-              className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl"
-            >
-              Discover hidden patterns
-              <span className="block mt-2 bg-gradient-to-r from-primary-600 to-secondary-500 bg-clip-text text-transparent">
-                in your data
-              </span>
-            </motion.h1>
+              <motion.h1
+                variants={fadeInUp}
+                transition={{ duration: 0.6 }}
+                className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1]"
+              >
+                Engineer
+                <br />
+                features{' '}
+                <span className="font-normal italic bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
+                  visually
+                </span>
+              </motion.h1>
 
-            <motion.p
-              variants={fadeInUp}
-              className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-400"
-            >
-              Stop guessing which features matter. Let AI analyze your datasets,
-              find meaningful correlations, and suggest the best features for your
-              machine learning models.
-            </motion.p>
+              <motion.p
+                variants={fadeInUp}
+                transition={{ duration: 0.6 }}
+                className="mt-8 text-lg text-white/40 leading-relaxed max-w-md"
+              >
+                Stop guessing which features matter. Drag nodes, draw connections,
+                and let AI discover patterns hiding in your data.
+              </motion.p>
 
-            <motion.div
-              variants={fadeInUp}
-              className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
-            >
-              <Button asChild size="lg" className="gap-2 px-8">
-                <Link href="/canvas">
-                  Start Exploring
-                  <ArrowRight className="h-4 w-4" />
+              <motion.div
+                variants={fadeInUp}
+                transition={{ duration: 0.6 }}
+                id="waitlist"
+                className="mt-12"
+              >
+                <WaitlistForm />
+              </motion.div>
+
+              <motion.div
+                variants={fadeInUp}
+                transition={{ duration: 0.6 }}
+                className="mt-8 flex items-center gap-8"
+              >
+                <Link
+                  href="/canvas"
+                  className="group flex items-center gap-2 text-sm text-white/50 hover:text-primary-400 transition-colors"
+                >
+                  Try the demo
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="px-8">
-                <Link href="#how-it-works">See How It Works</Link>
-              </Button>
+                <span className="text-xs text-white/20">No signup required</span>
+              </motion.div>
             </motion.div>
-          </motion.div>
 
-          {/* Hero Visual */}
+            {/* Right column - Visualization */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.2, delay: 0.3 }}
+              className="relative lg:pl-8"
+            >
+              <FloatingNodes />
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3"
+        >
+          <span className="text-[10px] uppercase tracking-[0.3em] text-white/20">Scroll</span>
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-20"
-          >
-            <div className={cn(
-              'relative mx-auto max-w-4xl rounded-2xl border p-2 shadow-2xl',
-              'border-gray-200 bg-gray-100',
-              'dark:border-gray-800 dark:bg-gray-900'
-            )}>
-              <div className={cn(
-                'rounded-xl border overflow-hidden',
-                'border-gray-200 bg-white',
-                'dark:border-gray-800 dark:bg-gray-950'
-              )}>
-                {/* Mock Canvas Preview */}
-                <div className="relative h-80 md:h-96">
-                  {/* Dotted grid background */}
-                  <div
-                    className={cn(
-                      'absolute inset-0',
-                      'bg-[radial-gradient(circle,_rgb(229_231_235)_1px,_transparent_1px)]',
-                      'dark:bg-[radial-gradient(circle,_rgb(55_65_81)_1px,_transparent_1px)]',
-                      'bg-[length:20px_20px]'
-                    )}
-                  />
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="w-px h-12 bg-gradient-to-b from-primary-500/30 via-secondary-500/20 to-transparent"
+          />
+        </motion.div>
+      </section>
 
-                  {/* Mock nodes */}
-                  <div className="absolute left-8 top-20 md:left-16 md:top-24">
-                    <div className="w-36 rounded-lg border border-primary-300 bg-white p-3 shadow-lg dark:border-primary-700 dark:bg-gray-800">
-                      <div className="flex items-center gap-2">
-                        <Database className="h-4 w-4 text-primary-500" />
-                        <span className="text-sm font-medium text-gray-900 dark:text-white">Dataset</span>
-                      </div>
-                      <p className="mt-1.5 text-xs text-gray-500">10,847 rows</p>
-                    </div>
-                  </div>
+      {/* Problem Section */}
+      <section className="py-32 md:py-48">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="text-xs uppercase tracking-[0.2em] text-primary-400/60 font-medium">
+                The problem
+              </span>
+              <h2 className="mt-6 text-3xl md:text-4xl font-light leading-tight">
+                Feature engineering requires
+                <br />
+                <span className="text-white/40">expertise you don&apos;t have time for</span>
+              </h2>
+            </motion.div>
 
-                  <div className="absolute left-40 top-8 md:left-60 md:top-12">
-                    <div className="w-32 rounded-lg border border-gray-200 bg-white p-3 shadow-md dark:border-gray-700 dark:bg-gray-800">
-                      <div className="flex items-center gap-2">
-                        <GitBranch className="h-4 w-4 text-blue-500" />
-                        <span className="text-sm font-medium text-gray-900 dark:text-white">Income</span>
-                      </div>
-                      <div className="mt-2 h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-                        <div className="h-full w-4/5 rounded-full bg-green-500" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="absolute right-8 top-16 md:right-20 md:top-20">
-                    <div className="w-40 rounded-lg border-2 border-purple-300 bg-purple-50 p-3 shadow-md dark:border-purple-700 dark:bg-purple-900/30">
-                      <div className="flex items-center gap-2">
-                        <Sparkles className="h-4 w-4 text-purple-500" />
-                        <span className="text-xs font-medium text-purple-700 dark:text-purple-300">AI Insight</span>
-                      </div>
-                      <p className="mt-1.5 text-xs text-purple-600 dark:text-purple-400">
-                        Strong correlation (0.87)
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="absolute bottom-16 left-48 md:bottom-20 md:left-72">
-                    <div className="w-36 rounded-lg border border-gray-200 bg-white p-2 shadow-md dark:border-gray-700 dark:bg-gray-800">
-                      <BarChart3 className="h-16 w-full text-secondary-500" />
-                    </div>
-                  </div>
-
-                  {/* Connection lines (simplified SVG) */}
-                  <svg className="absolute inset-0 pointer-events-none" style={{ width: '100%', height: '100%' }}>
-                    <path
-                      d="M 160 100 Q 220 80 260 70"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      className="text-gray-300 dark:text-gray-600"
-                    />
-                    <path
-                      d="M 260 90 Q 320 100 380 95"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeDasharray="6 4"
-                      className="text-green-400"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="lg:pt-12"
+            >
+              <p className="text-white/40 leading-relaxed">
+                Finding the right features for ML models requires domain expertise,
+                endless experimentation, and manual correlation analysis. Hours spent
+                writing scripts, running statistics, inspecting distributions—only to
+                miss the obvious pattern hiding in plain sight.
+              </p>
+              <p className="mt-6 text-white/40 leading-relaxed">
+                <span className="text-primary-400/80">FeatureLab</span> changes that. A visual canvas where you explore data
+                intuitively, while AI surfaces the insights you&apos;d otherwise miss.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-20 md:py-32">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
-              Feature engineering, simplified
+      {/* Features Grid */}
+      <section id="features" className="py-32 md:py-48 border-t border-white/5">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-xl mb-20"
+          >
+            <span className="text-xs uppercase tracking-[0.2em] text-secondary-400/60 font-medium">
+              Capabilities
+            </span>
+            <h2 className="mt-6 text-3xl md:text-4xl font-light">
+              Everything you need to{' '}
+              <span className="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
+                explore data
+              </span>
             </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-              Everything you need to transform raw data into powerful ML features.
-            </p>
-          </div>
+          </motion.div>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
-            {[
-              {
-                icon: Database,
-                title: 'Visual Data Exploration',
-                description:
-                  'Upload your CSV and instantly see your data visualized on an interactive canvas.',
-              },
-              {
-                icon: Brain,
-                title: 'AI-Powered Insights',
-                description:
-                  'Let AI discover correlations, patterns, and anomalies you might have missed.',
-              },
-              {
-                icon: LineChart,
-                title: 'Smart Visualizations',
-                description:
-                  'Generate scatter plots, histograms, and correlation matrices with one click.',
-              },
-            ].map((feature, i) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden">
+            {features.map((feature, i) => (
               <motion.div
                 key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className={cn(
-                  'rounded-2xl border p-6',
-                  'border-gray-200 bg-gray-50',
-                  'dark:border-gray-800 dark:bg-gray-900'
-                )}
+                transition={{ delay: i * 0.05 }}
+                className="bg-black p-8 md:p-10 group hover:bg-white/[0.02] transition-colors relative overflow-hidden"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500">
-                  <feature.icon className="h-6 w-6 text-white" />
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="mb-6 text-white/30 group-hover:text-primary-400 transition-colors">
+                  {feature.icon}
                 </div>
-                <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-400">
+                <h3 className="text-lg font-medium mb-2 group-hover:text-white transition-colors">{feature.title}</h3>
+                <p className="text-sm text-white/40 leading-relaxed">
                   {feature.description}
                 </p>
               </motion.div>
@@ -248,117 +327,170 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* How it Works */}
-      <section id="how-it-works" className="py-20 md:py-32 bg-gray-50 dark:bg-gray-900/50">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
-              How it works
+      {/* User Personas */}
+      <section className="py-32 md:py-48 border-t border-white/5">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-xl mb-20"
+          >
+            <span className="text-xs uppercase tracking-[0.2em] text-primary-400/60 font-medium">
+              Use cases
+            </span>
+            <h2 className="mt-6 text-3xl md:text-4xl font-light">
+              Built for{' '}
+              <span className="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
+                different needs
+              </span>
             </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-              From raw data to actionable insights in three simple steps.
+            <p className="mt-4 text-white/40 leading-relaxed">
+              Whether you&apos;re new to a domain or racing against deadlines,
+              FeatureLab adapts to your workflow.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
-            {[
-              {
-                step: '01',
-                title: 'Upload Your Data',
-                description: 'Drag and drop your CSV file. We instantly parse and preview your dataset.',
-              },
-              {
-                step: '02',
-                title: 'Explore Relationships',
-                description: 'Create visualizations and let AI find correlations between your features.',
-              },
-              {
-                step: '03',
-                title: 'Export Insights',
-                description: 'Save your findings and apply them to build better ML models.',
-              },
-            ].map((item, i) => (
+          <UserPersonas />
+        </div>
+      </section>
+
+      {/* How it Works */}
+      <section id="how-it-works" className="py-32 md:py-48 border-t border-white/5">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-xl mb-20"
+          >
+            <span className="text-xs uppercase tracking-[0.2em] text-primary-400/60 font-medium">
+              How it works
+            </span>
+            <h2 className="mt-6 text-3xl md:text-4xl font-light">
+              Three steps to{' '}
+              <span className="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
+                insights
+              </span>
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-16 md:gap-8">
+            {steps.map((step, i) => (
               <motion.div
-                key={item.step}
+                key={step.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="relative"
+                className="relative group"
               >
-                <span className="text-6xl font-bold text-gray-100 dark:text-gray-800">
-                  {item.step}
+                <span className="text-8xl font-extralight text-primary-500/[0.08] absolute -top-4 -left-2 group-hover:text-primary-500/[0.15] transition-colors">
+                  {step.number}
                 </span>
-                <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-400">
-                  {item.description}
-                </p>
+                <div className="relative pt-12">
+                  <div className="mb-4 text-white/40 group-hover:text-primary-400 transition-colors">
+                    {step.icon}
+                  </div>
+                  <h3 className="text-xl font-medium mb-2">{step.title}</h3>
+                  <p className="text-sm text-white/40">{step.description}</p>
+                </div>
+
+                {i < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-20 right-0 translate-x-1/2">
+                    <ArrowRight className="w-4 h-4 text-primary-500/30 group-hover:text-primary-500/50 transition-colors" />
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 md:py-32">
-        <div className="mx-auto max-w-6xl px-6">
+      {/* FAQ Section */}
+      <section id="faq" className="py-32 md:py-48 border-t border-white/5">
+        <div className="mx-auto max-w-3xl px-6">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className={cn(
-              'relative overflow-hidden rounded-3xl p-8 md:p-16 text-center',
-              'bg-gradient-to-br from-primary-500 to-secondary-500'
-            )}
+            className="mb-16"
           >
-            <div className="relative z-10">
-              <h2 className="text-3xl font-bold text-white md:text-4xl">
-                Ready to explore your data?
-              </h2>
-              <p className="mt-4 text-lg text-white/80">
-                Start discovering patterns and building better features today.
-              </p>
-              <Button
-                asChild
-                size="lg"
-                className="mt-8 bg-white text-primary-600 hover:bg-gray-100"
-              >
-                <Link href="/canvas">
-                  Get Started Free
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
+            <span className="text-xs uppercase tracking-[0.2em] text-secondary-400/60 font-medium">
+              FAQ
+            </span>
+            <h2 className="mt-6 text-3xl md:text-4xl font-light">
+              Common{' '}
+              <span className="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
+                questions
+              </span>
+            </h2>
+          </motion.div>
 
-            {/* Decorative elements */}
-            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-            <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+          <FaqAccordion items={faqData} />
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-32 md:py-48 border-t border-white/5">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-5xl font-light leading-tight">
+              Ready to see what your
+              <br />
+              <span className="italic bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
+                data is hiding?
+              </span>
+            </h2>
+
+            <p className="mt-8 text-white/40 max-w-md mx-auto">
+              Join the waitlist and be among the first to experience
+              visual feature engineering.
+            </p>
+
+            <div className="mt-12 max-w-md mx-auto">
+              <WaitlistForm variant="compact" />
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 py-12 dark:border-gray-800">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500">
-                <span className="text-sm font-bold text-white">FL</span>
+      <footer className="border-t border-white/5 py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex items-center gap-3">
+              <div className="relative w-8 h-8 flex items-center justify-center">
+                <Image
+                  src="/static/header logo.png"
+                  alt="FeatureLab Logo"
+                  width={32}
+                  height={32}
+                  className="brightness-0 invert opacity-60"
+                />
               </div>
-              <span className="font-semibold text-gray-900 dark:text-white">
-                FeatureLab
-              </span>
+              <span className="text-sm text-white/40">FeatureLab</span>
             </div>
 
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Built for data scientists, by data scientists.
+            <div className="flex items-center gap-8 text-sm text-white/30">
+              <Link href="/canvas" className="hover:text-primary-400 transition-colors">
+                Demo
+              </Link>
+              <Link href="#features" className="hover:text-secondary-400 transition-colors">
+                Features
+              </Link>
+              <Link href="#faq" className="hover:text-primary-400 transition-colors">
+                FAQ
+              </Link>
+            </div>
+
+            <p className="text-xs text-white/20">
+              © {new Date().getFullYear()} FeatureLab
             </p>
-
-            <div className="flex items-center gap-4">
-              <ThemeSwitch />
-            </div>
           </div>
         </div>
       </footer>
