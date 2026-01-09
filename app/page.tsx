@@ -1,399 +1,367 @@
-// @ts-nocheck
+'use client';
 
-import Header from '@/components/shared/Header';
-import Footer from '@/components/shared/Footer';
-import { LandingHeaderMenuItem } from '@/components/landing';
-import { LandingPrimaryImageCtaSection } from '@/components/landing';
-import { LandingSocialProof } from '@/components/landing';
-import { LandingFeatureList } from '@/components/landing';
-import { LandingProductSteps } from '@/components/landing';
-import { LandingProductFeature } from '@/components/landing';
-import { LandingTestimonialReadMoreWrapper } from '@/components/landing';
-import { LandingTestimonialGrid } from '@/components/landing';
-import { LandingSaleCtaSection } from '@/components/landing';
-import { LandingFaqCollapsibleSection } from '@/components/landing';
-import { LandingFooter } from '@/components/landing';
-import { LandingFooterColumn } from '@/components/landing';
-import { LandingFooterLink } from '@/components/landing';
-import Image from 'next/image';
-import { Button } from '@/components/shared/ui/button';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { CreditCard, Lock, Shield, TrendingUp, Users, Zap } from 'lucide-react';
+import {
+  Sparkles,
+  ArrowRight,
+  Database,
+  GitBranch,
+  BarChart3,
+  Zap,
+  Brain,
+  LineChart,
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/shared/ui/button';
+import { Header } from '@/components/shared/Header';
+import { ThemeSwitch } from '@/components/shared/ThemeSwitch';
 
-export default function Page() {
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 },
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+export default function LandingPage() {
   return (
-    <>
-      <Header className="mb-4" />
+    <div className="min-h-screen bg-white dark:bg-gray-950">
+      <Header />
 
-      <LandingPrimaryImageCtaSection
-        title="A simpler way to manage your money"
-        description="Take charge of your finances with Mevolut. Your money, clear and simple."
-        imageSrc="/static/images/1.jpg"
-        imageAlt="Dashboard Preview"
-        imagePosition="right"
-        imageShadow="hard"
-        textPosition="left"
-        withBackground={false}
-        variant="primary"
-        minHeight={350}
-      >
-        <Button size="xl" asChild>
-          <Link href="/dashboard">Dashboard</Link>
-        </Button>
-        <Button size="xl" variant="outlinePrimary" asChild>
-          <Link href="/pricing">Pricing</Link>
-        </Button>
-        <LandingSocialProof
-          className="mt-6 w-full"
-          avatarItems={[
-            {
-              imageSrc: '/static/images/people/1.webp',
-              name: 'Sarah Johnson',
-            },
-            {
-              imageSrc: '/static/images/people/2.webp',
-              name: 'Michael Chen',
-            },
-            {
-              imageSrc: '/static/images/people/3.webp',
-              name: 'Emily Rodriguez',
-            },
-          ]}
-          numberOfUsers={1100}
-          suffixText="happy users"
-        />
-      </LandingPrimaryImageCtaSection>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-32">
+        {/* Background gradient */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-br from-primary-100/40 via-secondary-100/30 to-transparent dark:from-primary-900/20 dark:via-secondary-900/10 rounded-full blur-3xl" />
+        </div>
 
-      <div className="container-wide p-12 w-full flex flex-wrap items-center justify-center gap-6 dark:invert">
-        <span className="w-full text-center text-sm opacity-70 dark:invert">
-          As seen on
-        </span>
-        <Image
-          src="/static/images/outlets/tech-crunch.svg"
-          alt="TechCrunch"
-          width={300}
-          height={300}
-          className="w-auto h-6"
-        />
-        <Image
-          src="/static/images/outlets/the-new-york-times.svg"
-          alt="The New York Times"
-          width={300}
-          height={300}
-          className="w-auto h-8"
-        />
-        <Image
-          src="/static/images/outlets/cnn.svg"
-          alt="CNN"
-          width={300}
-          height={300}
-          className="w-auto h-7"
-        />
-        <Image
-          src="/static/images/outlets/the-verge.svg"
-          alt="The Verge"
-          width={300}
-          height={300}
-          className="w-auto h-7"
-        />
-      </div>
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.div
+            className="text-center"
+            initial="initial"
+            animate="animate"
+            variants={staggerContainer}
+          >
+            <motion.div
+              variants={fadeInUp}
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-4 py-1.5 text-sm text-primary-700 dark:border-primary-800 dark:bg-primary-900/30 dark:text-primary-300"
+            >
+              <Sparkles className="h-4 w-4" />
+              AI-Powered Feature Engineering
+            </motion.div>
 
-      <LandingFeatureList
-        id="features"
-        title="Everything you need to manage your money"
-        description="Simple, powerful tools to help you take control of your finances."
-        featureItems={[
-          {
-            title: 'See your spending, simply',
-            description:
-              'Track every transaction automatically. Get instant insights into where your money goes with beautiful, easy-to-understand charts and reports.',
-            icon: <TrendingUp className="w-8 h-8" />,
-          },
-          {
-            title: 'Send and receive money instantly',
-            description:
-              'Transfer money to friends and family in seconds. No fees, no waiting. Just fast, secure payments whenever you need them.',
-            icon: <Zap className="w-8 h-8" />,
-          },
-          {
-            title: 'Save money automatically',
-            description:
-              'Set savings goals and watch your money grow. Our smart algorithms help you save without thinking about it, building your financial future effortlessly.',
-            icon: <CreditCard className="w-8 h-8" />,
-          },
-          {
-            title: 'Bank-level security',
-            description:
-              'Your money and data are protected with 256-bit encryption. We use the same security standards as major banks to keep your information safe.',
-            icon: <Shield className="w-8 h-8" />,
-          },
-          {
-            title: 'Multi-account management',
-            description:
-              'Connect all your bank accounts in one place. Get a complete view of your finances and manage everything from a single dashboard.',
-            icon: <Users className="w-8 h-8" />,
-          },
-          {
-            title: 'Privacy guaranteed',
-            description:
-              "We never sell your data. Your financial information stays private and secure. You're in complete control of who sees what.",
-            icon: <Lock className="w-8 h-8" />,
-          },
-        ]}
-        withBackground
-        withBackgroundGlow
-        variant="primary"
-        backgroundGlowVariant="primary"
-      />
+            <motion.h1
+              variants={fadeInUp}
+              className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl"
+            >
+              Discover hidden patterns
+              <span className="block mt-2 bg-gradient-to-r from-primary-600 to-secondary-500 bg-clip-text text-transparent">
+                in your data
+              </span>
+            </motion.h1>
 
-      <LandingProductSteps
-        title="How it Works"
-        description="Get started with Mevolut in three simple steps. No complicated setup, no hidden fees."
-        display="grid"
-        withBackground={false}
-        variant="primary"
-      >
-        <LandingProductFeature
-          title="1. Sign up in minutes"
-          description="Create your account quickly and securely. Just enter your email, set a password, and you're ready to go. No lengthy forms or waiting periods."
-          imageSrc="/static/images/2.jpg"
-          imageAlt="Sign up process"
-          imagePosition="center"
-          imageShadow="soft"
-          zoomOnHover
-          minHeight={350}
-          withBackground={false}
-          withBackgroundGlow={false}
-          variant="primary"
-          backgroundGlowVariant="primary"
-        />
-        <LandingProductFeature
-          title="2. Connect your bank accounts"
-          description="Link your existing bank accounts safely using our secure connection. We support thousands of banks and credit unions across the country."
-          imageSrc="/static/images/3.jpg"
-          imageAlt="Connect banks"
-          imagePosition="center"
-          imageShadow="soft"
-          zoomOnHover
-          minHeight={350}
-          withBackground={false}
-          withBackgroundGlow={false}
-          variant="primary"
-          backgroundGlowVariant="primary"
-        />
-        <LandingProductFeature
-          title="3. Start managing your money"
-          description="View all your accounts in one place. Track spending, set budgets, and achieve your financial goals with powerful insights and automation."
-          imageSrc="/static/images/4.jpg"
-          imageAlt="Manage money"
-          imagePosition="center"
-          imageShadow="soft"
-          zoomOnHover
-          minHeight={350}
-          withBackground={false}
-          withBackgroundGlow={false}
-          variant="primary"
-          backgroundGlowVariant="primary"
-        />
-      </LandingProductSteps>
+            <motion.p
+              variants={fadeInUp}
+              className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-400"
+            >
+              Stop guessing which features matter. Let AI analyze your datasets,
+              find meaningful correlations, and suggest the best features for your
+              machine learning models.
+            </motion.p>
 
-      <LandingProductFeature
-        id="security"
-        title="Your money is safe with us"
-        descriptionComponent={
-          <>
-            <p className="mb-6">
-              We take security seriously. Your financial data is protected with
-              industry-leading encryption and security measures.{' '}
+            <motion.div
+              variants={fadeInUp}
+              className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+            >
+              <Button asChild size="lg" className="gap-2 px-8">
+                <Link href="/canvas">
+                  Start Exploring
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="px-8">
+                <Link href="#how-it-works">See How It Works</Link>
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* Hero Visual */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="mt-20"
+          >
+            <div className={cn(
+              'relative mx-auto max-w-4xl rounded-2xl border p-2 shadow-2xl',
+              'border-gray-200 bg-gray-100',
+              'dark:border-gray-800 dark:bg-gray-900'
+            )}>
+              <div className={cn(
+                'rounded-xl border overflow-hidden',
+                'border-gray-200 bg-white',
+                'dark:border-gray-800 dark:bg-gray-950'
+              )}>
+                {/* Mock Canvas Preview */}
+                <div className="relative h-80 md:h-96">
+                  {/* Dotted grid background */}
+                  <div
+                    className={cn(
+                      'absolute inset-0',
+                      'bg-[radial-gradient(circle,_rgb(229_231_235)_1px,_transparent_1px)]',
+                      'dark:bg-[radial-gradient(circle,_rgb(55_65_81)_1px,_transparent_1px)]',
+                      'bg-[length:20px_20px]'
+                    )}
+                  />
+
+                  {/* Mock nodes */}
+                  <div className="absolute left-8 top-20 md:left-16 md:top-24">
+                    <div className="w-36 rounded-lg border border-primary-300 bg-white p-3 shadow-lg dark:border-primary-700 dark:bg-gray-800">
+                      <div className="flex items-center gap-2">
+                        <Database className="h-4 w-4 text-primary-500" />
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">Dataset</span>
+                      </div>
+                      <p className="mt-1.5 text-xs text-gray-500">10,847 rows</p>
+                    </div>
+                  </div>
+
+                  <div className="absolute left-40 top-8 md:left-60 md:top-12">
+                    <div className="w-32 rounded-lg border border-gray-200 bg-white p-3 shadow-md dark:border-gray-700 dark:bg-gray-800">
+                      <div className="flex items-center gap-2">
+                        <GitBranch className="h-4 w-4 text-blue-500" />
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">Income</span>
+                      </div>
+                      <div className="mt-2 h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                        <div className="h-full w-4/5 rounded-full bg-green-500" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="absolute right-8 top-16 md:right-20 md:top-20">
+                    <div className="w-40 rounded-lg border-2 border-purple-300 bg-purple-50 p-3 shadow-md dark:border-purple-700 dark:bg-purple-900/30">
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="h-4 w-4 text-purple-500" />
+                        <span className="text-xs font-medium text-purple-700 dark:text-purple-300">AI Insight</span>
+                      </div>
+                      <p className="mt-1.5 text-xs text-purple-600 dark:text-purple-400">
+                        Strong correlation (0.87)
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="absolute bottom-16 left-48 md:bottom-20 md:left-72">
+                    <div className="w-36 rounded-lg border border-gray-200 bg-white p-2 shadow-md dark:border-gray-700 dark:bg-gray-800">
+                      <BarChart3 className="h-16 w-full text-secondary-500" />
+                    </div>
+                  </div>
+
+                  {/* Connection lines (simplified SVG) */}
+                  <svg className="absolute inset-0 pointer-events-none" style={{ width: '100%', height: '100%' }}>
+                    <path
+                      d="M 160 100 Q 220 80 260 70"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="text-gray-300 dark:text-gray-600"
+                    />
+                    <path
+                      d="M 260 90 Q 320 100 380 95"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeDasharray="6 4"
+                      className="text-green-400"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 md:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+              Feature engineering, simplified
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+              Everything you need to transform raw data into powerful ML features.
             </p>
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-start">
-                <Shield className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" />
-                <span>
-                  <strong>256-bit encryption: </strong>
-                  Bank-level security protects all your data
+          </div>
+
+          <div className="mt-16 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                icon: Database,
+                title: 'Visual Data Exploration',
+                description:
+                  'Upload your CSV and instantly see your data visualized on an interactive canvas.',
+              },
+              {
+                icon: Brain,
+                title: 'AI-Powered Insights',
+                description:
+                  'Let AI discover correlations, patterns, and anomalies you might have missed.',
+              },
+              {
+                icon: LineChart,
+                title: 'Smart Visualizations',
+                description:
+                  'Generate scatter plots, histograms, and correlation matrices with one click.',
+              },
+            ].map((feature, i) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={cn(
+                  'rounded-2xl border p-6',
+                  'border-gray-200 bg-gray-50',
+                  'dark:border-gray-800 dark:bg-gray-900'
+                )}
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500">
+                  <feature.icon className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+                  {feature.title}
+                </h3>
+                <p className="mt-2 text-gray-600 dark:text-gray-400">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it Works */}
+      <section id="how-it-works" className="py-20 md:py-32 bg-gray-50 dark:bg-gray-900/50">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+              How it works
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+              From raw data to actionable insights in three simple steps.
+            </p>
+          </div>
+
+          <div className="mt-16 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                step: '01',
+                title: 'Upload Your Data',
+                description: 'Drag and drop your CSV file. We instantly parse and preview your dataset.',
+              },
+              {
+                step: '02',
+                title: 'Explore Relationships',
+                description: 'Create visualizations and let AI find correlations between your features.',
+              },
+              {
+                step: '03',
+                title: 'Export Insights',
+                description: 'Save your findings and apply them to build better ML models.',
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="relative"
+              >
+                <span className="text-6xl font-bold text-gray-100 dark:text-gray-800">
+                  {item.step}
                 </span>
-              </li>
-              <li className="flex items-start">
-                <Shield className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" />
-                <span>
-                  <strong>FDIC insurance: </strong>
-                  Your deposits are insured up to $250,000
-                </span>
-              </li>
-              <li className="flex items-start">
-                <Shield className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" />
-                <span>
-                  <strong>Privacy guaranteed: </strong>
-                  We never sell your personal information
-                </span>
-              </li>
-            </ul>
-          </>
-        }
-        imageSrc="/static/images/5.jpg"
-        imageAlt="Security features"
-        imagePosition="right"
-        imageShadow="hard"
-        textPosition="left"
-        withBackground
-        withBackgroundGlow
-        variant="primary"
-        backgroundGlowVariant="primary"
-        imagePerspective="bottom"
-        zoomOnHover
-        minHeight={350}
-      />
+                <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-gray-600 dark:text-gray-400">
+                  {item.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <LandingTestimonialReadMoreWrapper>
-        <LandingTestimonialGrid
-          title="Loved by thousands of users"
-          description="See what our customers have to say about managing their finances with Mevolut."
-          testimonialItems={[
-            {
-              name: 'Sarah Anderson',
-              text: 'Mevolut made budgeting so much easier for me. I can finally see where my money goes each month and make smarter decisions about my spending.',
-              handle: '@sarahanderson',
-              imageSrc: '/static/images/people/4.webp',
-              url: '#',
-              verified: true,
-            },
-            {
-              name: 'John Bennett',
-              text: "Mevolut helped me finally understand where my money goes each month. Now I feel in control of my finances and I'm actually saving money for the first time.",
-              handle: '@johnbennett',
-              imageSrc: '/static/images/people/5.webp',
-              url: '#',
-              verified: true,
-            },
-            {
-              name: 'Maria Garcia',
-              text: "The automatic savings feature is a game changer. I've saved more in three months with Mevolut than I did all last year trying to do it manually.",
-              handle: '@mariagarcia',
-              imageSrc: '/static/images/people/6.webp',
-              url: '#',
-            },
-            {
-              name: 'David Kim',
-              text: 'I love how simple everything is. No confusing menus or complicated features. Just straightforward money management that actually works.',
-              handle: '@davidkim',
-              imageSrc: '/static/images/people/7.webp',
-              url: '#',
-              verified: true,
-            },
-            {
-              name: 'Emily Rodriguez',
-              text: 'Being able to see all my accounts in one place has been incredible. I finally have a complete picture of my financial situation and can plan accordingly.',
-              handle: '@emilyrodriguez',
-              imageSrc: '/static/images/people/8.webp',
-              url: '#',
-            },
-            {
-              name: 'Michael Thompson',
-              text: "The security features give me peace of mind. I know my financial data is protected and my privacy is respected. That's worth everything to me.",
-              handle: '@michaelthompson',
-              imageSrc: '/static/images/people/9.webp',
-              url: '#',
-              verified: true,
-            },
-            {
-              name: 'Jessica Lee',
-              text: 'Mevolut has completely changed how I think about money. The insights and reports help me make better financial decisions every single day.',
-              handle: '@jessicalee',
-              imageSrc: '/static/images/people/10.webp',
-              url: '#',
-            },
-            {
-              name: 'Robert Martinez',
-              text: "I was skeptical at first, but Mevolut has exceeded all my expectations. It's intuitive, powerful, and has genuinely improved my financial health.",
-              handle: '@robertmartinez',
-              imageSrc: '/static/images/people/11.webp',
-              url: '#',
-              verified: true,
-            },
-            {
-              name: 'Amanda Chen',
-              text: 'The instant money transfers are so convenient. I can split bills with friends or send money to family in seconds. No more waiting days for transfers.',
-              handle: '@amandachen',
-              imageSrc: '/static/images/people/12.webp',
-              url: '#',
-            },
-          ]}
-          withBackground={false}
-          variant="primary"
-        />
-      </LandingTestimonialReadMoreWrapper>
+      {/* CTA Section */}
+      <section className="py-20 md:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className={cn(
+              'relative overflow-hidden rounded-3xl p-8 md:p-16 text-center',
+              'bg-gradient-to-br from-primary-500 to-secondary-500'
+            )}
+          >
+            <div className="relative z-10">
+              <h2 className="text-3xl font-bold text-white md:text-4xl">
+                Ready to explore your data?
+              </h2>
+              <p className="mt-4 text-lg text-white/80">
+                Start discovering patterns and building better features today.
+              </p>
+              <Button
+                asChild
+                size="lg"
+                className="mt-8 bg-white text-primary-600 hover:bg-gray-100"
+              >
+                <Link href="/canvas">
+                  Get Started Free
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
 
-      <LandingSaleCtaSection
-        id="pricing"
-        title="Simple, fair pricing"
-        description="No hidden fees. No surprises. Just transparent pricing that makes sense for everyone."
-        withBackground
-        withBackgroundGlow
-        variant="primary"
-        backgroundGlowVariant="primary"
-      >
-        <Button size="xl" asChild>
-          <Link href="/plans">See Plans</Link>
-        </Button>
-      </LandingSaleCtaSection>
+            {/* Decorative elements */}
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+            <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+          </motion.div>
+        </div>
+      </section>
 
-      <LandingFaqCollapsibleSection
-        id="faq"
-        title="Frequently Asked Questions"
-        description="Got questions? We've got answers. Find everything you need to know about Mevolut."
-        faqItems={[
-          {
-            question: 'Is Mevolut free to use?',
-            answer:
-              'Yes! Mevolut offers a free plan with essential features. We also have premium plans with advanced features for users who need more functionality. There are no hidden fees or surprise charges.',
-          },
-          {
-            question: 'How secure is my financial data?',
-            answer:
-              'Your security is our top priority. We use 256-bit encryption, the same level of security used by major banks. Your data is protected with multiple layers of security, and we never sell your personal information to third parties.',
-          },
-          {
-            question: 'Which banks can I connect to Mevolut?',
-            answer:
-              'Mevolut supports thousands of banks and credit unions across the United States. We work with all major banks and most regional institutions. If you have questions about a specific bank, please contact our support team.',
-          },
-          {
-            question: 'Can I use Mevolut on my phone?',
-            answer:
-              'Absolutely! Mevolut works seamlessly on all devices including smartphones, tablets, and desktop computers. Access your finances anytime, anywhere with our responsive web app.',
-          },
-          {
-            question: 'How does automatic saving work?',
-            answer:
-              "Our smart algorithms analyze your spending patterns and income to automatically set aside small amounts you won't miss. You can customize your savings goals and rules, and we'll handle the rest automatically.",
-          },
-          {
-            question: 'What if I need help or have questions?',
-            answer:
-              'Our customer support team is here to help! You can reach us via email, live chat, or phone. We also have a comprehensive help center with guides and tutorials to help you get the most out of Mevolut.',
-          },
-        ]}
-        withBackground={false}
-        withBackgroundGlow={false}
-        variant="primary"
-        backgroundGlowVariant="primary"
-      />
+      {/* Footer */}
+      <footer className="border-t border-gray-200 py-12 dark:border-gray-800">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500">
+                <span className="text-sm font-bold text-white">FL</span>
+              </div>
+              <span className="font-semibold text-gray-900 dark:text-white">
+                FeatureLab
+              </span>
+            </div>
 
-      <LandingSaleCtaSection
-        title="Ready to take control? Join Mevolut today."
-        description="Start managing your money smarter. Sign up free and see the difference in minutes."
-        withBackground
-        withBackgroundGlow
-        variant="primary"
-        backgroundGlowVariant="primary"
-      >
-        <Button size="xl" asChild>
-          <Link href="/signup">Sign Up Free</Link>
-        </Button>
-      </LandingSaleCtaSection>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Built for data scientists, by data scientists.
+            </p>
 
-      <Footer className="mt-8" />
-    </>
+            <div className="flex items-center gap-4">
+              <ThemeSwitch />
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 }

@@ -1,0 +1,184 @@
+'use client';
+
+import { useMemo } from 'react';
+import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/shared/ui/button';
+import {
+  CanvasNodeData,
+  CanvasViewport,
+} from '@/components/canvas/models/canvas-types';
+
+interface CanvasMinimapProps {
+  nodes: CanvasNodeData[];
+  viewport: CanvasViewport;
+  onZoomIn: () => void;
+  onZoomOut: () => void;
+  onResetView: () => void;
+  className?: string;
+}
+
+const MINIMAP_WIDTH = 200;
+const MINIMAP_HEIGHT = 130;
+const MINIMAP_PADDING = 12;
+
+const NODE_WIDTHS: Record<string, number> = {
+  dataset: 224,
+  feature: 192,
+  insight: 240,
+  chart: 256,
+  transformation: 200,
+};
+
+const NODE_HEIGHTS: Record<string, number> = {
+  dataset: 160,
+  feature: 160,
+  insight: 180,
+  chart: 200,
+  transformation: 120,
+};
+
+export const CanvasMinimap = ({
+  nodes,
+  viewport,
+  onZoomIn,
+  onZoomOut,
+  onResetView,
+  className,
+}: CanvasMinimapProps) => {
+  const minimapData = useMemo(() => {
+    if (nodes.length === 0) {
+      return {
+        scale: 1,
+        offsetX: 0,
+        offsetY: 0,
+        nodeRects: [],
+      };
+    }
+
+    const minX = Math.min(...nodes.map((n) => n.position.x)) - MINIMAP_PADDING;
+    const minY = Math.min(...nodes.map((n) => n.position.y)) - MINIMAP_PADDING;
+    const maxX = Math.max(
+      ...nodes.map((n) => n.position.x + (NODE_WIDTHS[n.type] || 200))
+    ) + MINIMAP_PADDING;
+    const maxY = Math.max(
+      ...nodes.map((n) => n.position.y + (NODE_HEIGHTS[n.type] || 150))
+    ) + MINIMAP_PADDING;
+
+    const contentWidth = maxX - minX;
+    const contentHeight = maxY - minY;
+
+    const scaleX = (MINIMAP_WIDTH - MINIMAP_PADDING * 2) / contentWidth;
+    const scaleY = (MINIMAP_HEIGHT - MINIMAP_PADDING * 2) / contentHeight;
+    const scale = Math.min(scaleX, scaleY, 0.12);
+
+    const nodeRects = nodes.map((node) => ({
+      id: node.id,
+      x: (node.position.x - minX) * scale + MINIMAP_PADDING,
+      y: (node.position.y - minY) * scale + MINIMAP_PADDING,
+      width: (NODE_WIDTHS[node.type] || 200) * scale,
+      height: (NODE_HEIGHTS[node.type] || 150) * scale,
+      type: node.type,
+    }));
+
+    return {
+      scale,
+      offsetX: minX,
+      offsetY: minY,
+      nodeRects,
+    };
+  }, [nodes]);
+
+  const nodeColors: Record<string, string> = {
+    dataset: 'fill-primary-500',
+    feature: 'fill-gray-400 dark:fill-gray-500',
+    insight: 'fill-purple-400 dark:fill-purple-500',
+    chart: 'fill-secondary-500',
+    transformation: 'fill-amber-500',
+  };
+
+  return (
+    <div
+      className={cn(
+        'fixed bottom-4 right-4 z-30 flex flex-col gap-2',
+        className
+      )}
+    >
+      <div
+        className={cn(
+          'overflow-hidden rounded-xl border shadow-lg',
+          'border-gray-200 bg-white',
+          'dark:border-gray-700 dark:bg-gray-800'
+        )}
+      >
+        <svg
+          width={MINIMAP_WIDTH}
+          height={MINIMAP_HEIGHT}
+          className="bg-gray-50 dark:bg-gray-900"
+        >
+          <rect
+            width={MINIMAP_WIDTH}
+            height={MINIMAP_HEIGHT}
+            className="fill-gray-50 dark:fill-gray-900"
+          />
+
+          {minimapData.nodeRects.map((rect) => (
+            <rect
+              key={rect.id}
+              x={rect.x}
+              y={rect.y}
+              width={Math.max(rect.width, 3)}
+              height={Math.max(rect.height, 2)}
+              rx={1}
+              className={nodeColors[rect.type] || 'fill-gray-400'}
+            />
+          ))}
+        </svg>
+      </div>
+
+      <div
+        className={cn(
+          'flex items-center justify-between rounded-xl border px-2 py-1.5 shadow-sm',
+          'border-gray-200 bg-white',
+          'dark:border-gray-700 dark:bg-gray-800'
+        )}
+      >
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-7 w-7"
+          onClick={onZoomOut}
+          title="Zoom out"
+        >
+          <ZoomOut className="h-4 w-4" />
+        </Button>
+
+        <span className="min-w-12 text-center text-xs font-medium text-gray-600 dark:text-gray-400">
+          {Math.round(viewport.zoom * 100)}%
+        </span>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-7 w-7"
+          onClick={onZoomIn}
+          title="Zoom in"
+        >
+          <ZoomIn className="h-4 w-4" />
+        </Button>
+
+        <div className="mx-1 h-4 w-px bg-gray-200 dark:bg-gray-700" />
+
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-7 w-7"
+          onClick={onResetView}
+          title="Reset view"
+        >
+          <Maximize2 className="h-4 w-4" />
+        </Button>
+      </div>
+    </div>
+  );
+};
