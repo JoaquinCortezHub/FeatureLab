@@ -6,7 +6,6 @@ import { Metadata } from 'next';
 import { colors } from '@/data/config/colors.js';
 
 import '@/css/globals.css';
-import { SearchProvider } from '@/components/shared/SearchProvider';
 import { AnalyticsWrapper } from '@/components/shared/Analytics';
 
 const displayFont = Nunito_Sans({
@@ -49,9 +48,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: './',
-    types: {
-      'application/rss+xml': `${siteConfig.siteUrl}/feed.xml`,
-    },
   },
   robots: {
     index: true,
@@ -91,42 +87,42 @@ export default function RootLayout({
         `}
         </style>
 
+        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
         <link
           rel="apple-touch-icon"
           sizes="76x76"
-          href="/static/favicons/apple-touch-icon.png"
+          href="/static/favicons/apple-touch-icon.png?v=2"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="/static/favicons/favicon-32x32.png"
+          href="/static/favicons/favicon-32x32.png?v=2"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="/static/favicons/favicon-16x16.png"
+          href="/static/favicons/favicon-16x16.png?v=2"
         />
-        <link rel="manifest" href="/static/favicons/manifest.webmanifest" />
+        <link rel="manifest" href="/static/favicons/manifest.webmanifest?v=2" />
         <link
           rel="mask-icon"
           href="/static/favicons/safari-pinned-tab.svg"
-          color="#5bbad5"
+          color="#3b82f6"
         />
         <meta name="generator" content="Shipixen" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta
           name="theme-color"
           media="(prefers-color-scheme: light)"
-          content="#fff"
+          content="#000000"
         />
         <meta
           name="theme-color"
           media="(prefers-color-scheme: dark)"
-          content="#000"
+          content="#000000"
         />
-        <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
 
       <body className="flex flex-col bg-white text-black antialiased dark:bg-black dark:text-white min-h-screen">
@@ -134,11 +130,9 @@ export default function RootLayout({
           <AnalyticsWrapper />
 
           <div className="w-full flex flex-col justify-between items-center font-sans">
-            <SearchProvider>
-              <main className="w-full flex flex-col items-stretch mb-auto">
-                {children}
-              </main>
-            </SearchProvider>
+            <main className="w-full flex flex-col items-stretch mb-auto">
+              {children}
+            </main>
           </div>
         </ThemeProviders>
       </body>

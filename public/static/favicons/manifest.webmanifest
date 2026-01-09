@@ -1,15 +1,15 @@
 {
-  "name": "Mevolut",
-  "short_name": "Mevolut",
-  "description": "Manage your money the easy way with Mevolut . Track expenses, send money, and grow your savings – safely and simply. Sign up free today!",
+  "name": "FeatureLab",
+  "short_name": "FeatureLab",
+  "description": "AI-Powered Feature Engineering. Discover hidden patterns in your data and engineer features for your ML models visually.",
   "dir": "auto",
   "lang": "en-US",
   "display": "standalone",
   "orientation": "any",
   "scope": "/",
   "start_url": "/?homescreen=1",
-  "background_color": "#fff",
-  "theme_color": "#fff",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "icons": [
     {
       "src": "/static/favicons/android-chrome-36x36.png",

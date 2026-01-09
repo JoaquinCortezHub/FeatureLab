@@ -492,7 +492,7 @@ export default function LandingPage() {
                   alt="FeatureLab Logo"
                   width={32}
                   height={32}
-                  className="brightness-0 invert opacity-60"
+                  className="opacity-70"
                 />
               </div>
               <span className="text-sm text-white/40">FeatureLab</span>

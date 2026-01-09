@@ -1,13 +1,9 @@
-import { AnalyticsConfig } from '@shipixen/pliny/analytics';
-import { CommentsConfig } from '@shipixen/pliny/comments';
-import { NewsletterConfig } from '@shipixen/pliny/newsletter';
-import { SearchConfig } from '@shipixen/pliny/search';
-
 export interface SiteMetadata {
   title: string;
   description: string;
   domain: string;
   logoTitle: string;
+  siteUrl: string;
   socialBanner: string;
   supportEmail: string;
 
@@ -28,10 +24,8 @@ export interface SiteMetadata {
 }
 
 export interface SiteConfig extends SiteMetadata {
-  allArticlesPath: string;
   disableAnalytics: boolean;
-  analytics?: AnalyticsConfig | undefined;
-  comments?: CommentsConfig | undefined;
-  newsletter?: NewsletterConfig | undefined;
-  search?: SearchConfig | undefined;
+  analytics?: Record<string, unknown> | undefined;
+  newsletter?: Record<string, unknown> | undefined;
+  search?: boolean | undefined;
 }

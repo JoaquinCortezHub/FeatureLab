@@ -36,7 +36,7 @@ export const Header = ({ className, variant = 'dark' }: HeaderProps) => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
         isScrolled ? 'bg-black/80 backdrop-blur-xl' : 'bg-transparent',
-        className
+        className,
       )}
     >
       <div className="mx-auto flex h-16 md:h-20 max-w-7xl items-center justify-between px-6">
@@ -48,10 +48,12 @@ export const Header = ({ className, variant = 'dark' }: HeaderProps) => {
               alt="FeatureLab Logo"
               width={32}
               height={32}
-              className="brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity"
+              className="opacity-90 group-hover:opacity-100 transition-opacity"
             />
           </div>
-          <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">FeatureLab</span>
+          <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">
+            FeatureLab
+          </span>
         </Link>
 
         {/* Desktop Navigation */}

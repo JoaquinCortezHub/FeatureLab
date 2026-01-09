@@ -32,7 +32,7 @@ const siteConfig = {
     // Optional: enable newsletter
     // provider: 'emailoctopus',
   },
-  search: true, // Enable or disable search
+  search: false, // Enable or disable search
 };
 
 module.exports = { siteConfig };
