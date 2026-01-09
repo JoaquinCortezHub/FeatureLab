@@ -1,0 +1,129 @@
+{
+  "header": {
+    "features": "Features",
+    "howItWorks": "How it works",
+    "faq": "FAQ",
+    "demo": "Demo",
+    "joinWaitlist": "Join waitlist"
+  },
+  "hero": {
+    "badge": "Now in private beta",
+    "title1": "Engineer",
+    "title2": "features",
+    "title3": "visually",
+    "description": "Stop guessing which features matter. Drag nodes, draw connections, and let AI discover patterns hiding in your data.",
+    "tryDemo": "Try the demo",
+    "noSignup": "No signup required",
+    "scroll": "Scroll"
+  },
+  "problem": {
+    "label": "The problem",
+    "title": "Feature engineering requires",
+    "titleHighlight": "expertise you don't have time for",
+    "description1": "Finding the right features for ML models requires domain expertise, endless experimentation, and manual correlation analysis. Hours spent writing scripts, running statistics, inspecting distributions—only to miss the obvious pattern hiding in plain sight.",
+    "description2": "changes that. A visual canvas where you explore data intuitively, while AI surfaces the insights you'd otherwise miss.",
+    "productName": "FeatureLab"
+  },
+  "features": {
+    "label": "Capabilities",
+    "title": "Everything you need to",
+    "titleHighlight": "explore data",
+    "dragDrop": {
+      "title": "Drag & Drop Canvas",
+      "description": "Move nodes around intuitively. Organize your workflow visually."
+    },
+    "smartConnections": {
+      "title": "Smart Connections",
+      "description": "Draw relationships between features. See correlation strength instantly."
+    },
+    "aiInsights": {
+      "title": "AI Insights",
+      "description": "Let AI surface patterns and anomalies you would have missed."
+    },
+    "featureStats": {
+      "title": "Feature Stats",
+      "description": "Distributions, missing values, importance scores—all on canvas."
+    },
+    "instantCharts": {
+      "title": "Instant Charts",
+      "description": "Generate visualizations with one click. No code required."
+    },
+    "mlExport": {
+      "title": "ML-Ready Export",
+      "description": "Export engineered features in formats ready for your stack."
+    }
+  },
+  "useCases": {
+    "label": "Use cases",
+    "title": "Built for",
+    "titleHighlight": "different needs",
+    "description": "Whether you're new to a domain or racing against deadlines, FeatureLab adapts to your workflow."
+  },
+  "howItWorks": {
+    "label": "How it works",
+    "title": "Three steps to",
+    "titleHighlight": "insights",
+    "upload": {
+      "title": "Upload",
+      "description": "Drop your CSV. We parse instantly."
+    },
+    "explore": {
+      "title": "Explore",
+      "description": "Create nodes. Draw connections. Discover."
+    },
+    "export": {
+      "title": "Export",
+      "description": "Save insights. Build better models."
+    }
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Common",
+    "titleHighlight": "questions",
+    "items": {
+      "whatIs": {
+        "question": "What is FeatureLab?",
+        "answer": "FeatureLab is a visual feature engineering tool for data scientists and ML engineers. It helps you explore datasets, discover correlations, and engineer features using an intuitive canvas interface—no coding required for the exploration phase."
+      },
+      "aiInsights": {
+        "question": "How does AI insight generation work?",
+        "answer": "Our AI analyzes your dataset to detect correlations, identify potential predictors, spot anomalies, and suggest transformations. All insights come with confidence scores so you can prioritize what matters."
+      },
+      "fileFormats": {
+        "question": "What file formats are supported?",
+        "answer": "Currently CSV files up to 10MB. We parse your data instantly and create an interactive preview. Excel, JSON, and database connections are on our roadmap."
+      },
+      "security": {
+        "question": "Is my data secure?",
+        "answer": "Yes. Data is processed locally in your browser during exploration. When using AI features, data is transmitted securely and never stored after processing."
+      },
+      "pricing": {
+        "question": "How much will it cost?",
+        "answer": "We're in private beta offering free early access to waitlist members. Pricing will be announced before general release, with significant discounts for early adopters."
+      },
+      "availability": {
+        "question": "When will it be available?",
+        "answer": "Public beta is targeted for Q2 2026. Join the waitlist for early access and to help shape the product with your feedback."
+      }
+    }
+  },
+  "cta": {
+    "title1": "Ready to see what your",
+    "title2": "data is hiding?",
+    "description": "Join the waitlist and be among the first to experience visual feature engineering."
+  },
+  "waitlistForm": {
+    "placeholder": "you@company.com",
+    "button": "Join waitlist",
+    "success": "You're on the list. We'll be in touch.",
+    "errorInvalid": "Please enter a valid email",
+    "errorDuplicate": "You're already on the list",
+    "errorGeneric": "Something went wrong. Please try again.",
+    "socialProof": "500+ data scientists on the waitlist"
+  },
+  "footer": {
+    "demo": "Demo",
+    "features": "Features",
+    "faq": "FAQ"
+  }
+}

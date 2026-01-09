@@ -15,11 +15,12 @@ import {
   ArrowRight,
   ArrowUpRight,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { Header } from '@/components/shared/Header';
 import { WaitlistForm } from '@/components/landing/WaitlistForm';
 import { FloatingNodes } from '@/components/landing/FloatingNodes';
-import { FaqAccordion, faqData } from '@/components/landing/FaqAccordion';
+import { FaqAccordion } from '@/components/landing/FaqAccordion';
 import { UserPersonas } from '@/components/landing/UserPersonas';
 import Image from '@/components/shared/Image';
 
@@ -37,41 +38,38 @@ const stagger = {
 };
 
 export default function LandingPage() {
+  const t = useTranslations();
+
   const features = [
     {
       icon: <MousePointer2 className="h-5 w-5" />,
-      title: 'Drag & Drop Canvas',
-      description:
-        'Move nodes around intuitively. Organize your workflow visually.',
+      title: t('features.dragDrop.title'),
+      description: t('features.dragDrop.description'),
     },
     {
       icon: <GitBranch className="h-5 w-5" />,
-      title: 'Smart Connections',
-      description:
-        'Draw relationships between features. See correlation strength instantly.',
+      title: t('features.smartConnections.title'),
+      description: t('features.smartConnections.description'),
     },
     {
       icon: <Sparkles className="h-5 w-5" />,
-      title: 'AI Insights',
-      description:
-        'Let AI surface patterns and anomalies you would have missed.',
+      title: t('features.aiInsights.title'),
+      description: t('features.aiInsights.description'),
     },
     {
       icon: <Layers className="h-5 w-5" />,
-      title: 'Feature Stats',
-      description:
-        'Distributions, missing values, importance scores—all on canvas.',
+      title: t('features.featureStats.title'),
+      description: t('features.featureStats.description'),
     },
     {
       icon: <Zap className="h-5 w-5" />,
-      title: 'Instant Charts',
-      description: 'Generate visualizations with one click. No code required.',
+      title: t('features.instantCharts.title'),
+      description: t('features.instantCharts.description'),
     },
     {
       icon: <Brain className="h-5 w-5" />,
-      title: 'ML-Ready Export',
-      description:
-        'Export engineered features in formats ready for your stack.',
+      title: t('features.mlExport.title'),
+      description: t('features.mlExport.description'),
     },
   ];
 
@@ -79,20 +77,47 @@ export default function LandingPage() {
     {
       number: '01',
       icon: <Upload className="h-5 w-5" />,
-      title: 'Upload',
-      description: 'Drop your CSV. We parse instantly.',
+      title: t('howItWorks.upload.title'),
+      description: t('howItWorks.upload.description'),
     },
     {
       number: '02',
       icon: <Eye className="h-5 w-5" />,
-      title: 'Explore',
-      description: 'Create nodes. Draw connections. Discover.',
+      title: t('howItWorks.explore.title'),
+      description: t('howItWorks.explore.description'),
     },
     {
       number: '03',
       icon: <Download className="h-5 w-5" />,
-      title: 'Export',
-      description: 'Save insights. Build better models.',
+      title: t('howItWorks.export.title'),
+      description: t('howItWorks.export.description'),
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: t('faq.items.whatIs.question'),
+      answer: t('faq.items.whatIs.answer'),
+    },
+    {
+      question: t('faq.items.aiInsights.question'),
+      answer: t('faq.items.aiInsights.answer'),
+    },
+    {
+      question: t('faq.items.fileFormats.question'),
+      answer: t('faq.items.fileFormats.answer'),
+    },
+    {
+      question: t('faq.items.security.question'),
+      answer: t('faq.items.security.answer'),
+    },
+    {
+      question: t('faq.items.pricing.question'),
+      answer: t('faq.items.pricing.answer'),
+    },
+    {
+      question: t('faq.items.availability.question'),
+      answer: t('faq.items.availability.answer'),
     },
   ];
 
@@ -171,7 +196,7 @@ export default function LandingPage() {
               >
                 <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary-400/60 font-medium">
                   <span className="w-8 h-px bg-gradient-to-r from-primary-500/40 to-secondary-500/40" />
-                  Now in private beta
+                  {t('hero.badge')}
                 </span>
               </motion.div>
 
@@ -180,11 +205,11 @@ export default function LandingPage() {
                 transition={{ duration: 0.6 }}
                 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1]"
               >
-                Engineer
+                {t('hero.title1')}
                 <br />
-                features{' '}
+                {t('hero.title2')}{' '}
                 <span className="font-normal italic bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
-                  visually
+                  {t('hero.title3')}
                 </span>
               </motion.h1>
 
@@ -193,8 +218,7 @@ export default function LandingPage() {
                 transition={{ duration: 0.6 }}
                 className="mt-8 text-lg text-white/40 leading-relaxed max-w-md"
               >
-                Stop guessing which features matter. Drag nodes, draw
-                connections, and let AI discover patterns hiding in your data.
+                {t('hero.description')}
               </motion.p>
 
               <motion.div
@@ -215,11 +239,11 @@ export default function LandingPage() {
                   href="/canvas"
                   className="group flex items-center gap-2 text-sm text-white/50 hover:text-primary-400 transition-colors"
                 >
-                  Try the demo
+                  {t('hero.tryDemo')}
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
                 <span className="text-xs text-white/20">
-                  No signup required
+                  {t('hero.noSignup')}
                 </span>
               </motion.div>
             </motion.div>
@@ -244,7 +268,7 @@ export default function LandingPage() {
           className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3"
         >
           <span className="text-[10px] uppercase tracking-[0.3em] text-white/20">
-            Scroll
+            {t('hero.scroll')}
           </span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
@@ -265,13 +289,13 @@ export default function LandingPage() {
               transition={{ duration: 0.6 }}
             >
               <span className="text-xs uppercase tracking-[0.2em] text-primary-400/60 font-medium">
-                The problem
+                {t('problem.label')}
               </span>
               <h2 className="mt-6 text-3xl md:text-4xl font-light leading-tight">
-                Feature engineering requires
+                {t('problem.title')}
                 <br />
                 <span className="text-white/40">
-                  expertise you don&apos;t have time for
+                  {t('problem.titleHighlight')}
                 </span>
               </h2>
             </motion.div>
@@ -284,16 +308,13 @@ export default function LandingPage() {
               className="lg:pt-12"
             >
               <p className="text-white/40 leading-relaxed">
-                Finding the right features for ML models requires domain
-                expertise, endless experimentation, and manual correlation
-                analysis. Hours spent writing scripts, running statistics,
-                inspecting distributions—only to miss the obvious pattern hiding
-                in plain sight.
+                {t('problem.description1')}
               </p>
               <p className="mt-6 text-white/40 leading-relaxed">
-                <span className="text-primary-400/80">FeatureLab</span> changes
-                that. A visual canvas where you explore data intuitively, while
-                AI surfaces the insights you&apos;d otherwise miss.
+                <span className="text-primary-400/80">
+                  {t('problem.productName')}
+                </span>{' '}
+                {t('problem.description2')}
               </p>
             </motion.div>
           </div>
@@ -310,12 +331,12 @@ export default function LandingPage() {
             className="max-w-xl mb-20"
           >
             <span className="text-xs uppercase tracking-[0.2em] text-primary-400/60 font-medium">
-              Capabilities
+              {t('features.label')}
             </span>
             <h2 className="mt-6 text-3xl md:text-4xl font-light">
-              Everything you need to{' '}
+              {t('features.title')}{' '}
               <span className="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
-                explore data
+                {t('features.titleHighlight')}
               </span>
             </h2>
           </motion.div>
@@ -356,17 +377,16 @@ export default function LandingPage() {
             className="max-w-xl mb-20"
           >
             <span className="text-xs uppercase tracking-[0.2em] text-primary-400/60 font-medium">
-              Use cases
+              {t('useCases.label')}
             </span>
             <h2 className="mt-6 text-3xl md:text-4xl font-light">
-              Built for{' '}
+              {t('useCases.title')}{' '}
               <span className="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
-                different needs
+                {t('useCases.titleHighlight')}
               </span>
             </h2>
             <p className="mt-4 text-white/40 leading-relaxed">
-              Whether you&apos;re new to a domain or racing against deadlines,
-              FeatureLab adapts to your workflow.
+              {t('useCases.description')}
             </p>
           </motion.div>
 
@@ -387,12 +407,12 @@ export default function LandingPage() {
             className="max-w-xl mb-20"
           >
             <span className="text-xs uppercase tracking-[0.2em] text-primary-400/60 font-medium">
-              How it works
+              {t('howItWorks.label')}
             </span>
             <h2 className="mt-6 text-3xl md:text-4xl font-light">
-              Three steps to{' '}
+              {t('howItWorks.title')}{' '}
               <span className="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
-                insights
+                {t('howItWorks.titleHighlight')}
               </span>
             </h2>
           </motion.div>
@@ -439,17 +459,17 @@ export default function LandingPage() {
             className="mb-16"
           >
             <span className="text-xs uppercase tracking-[0.2em] text-primary-400/60 font-medium">
-              FAQ
+              {t('faq.label')}
             </span>
             <h2 className="mt-6 text-3xl md:text-4xl font-light">
-              Common{' '}
+              {t('faq.title')}{' '}
               <span className="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
-                questions
+                {t('faq.titleHighlight')}
               </span>
             </h2>
           </motion.div>
 
-          <FaqAccordion items={faqData} />
+          <FaqAccordion items={faqItems} />
         </div>
       </section>
 
@@ -462,16 +482,15 @@ export default function LandingPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-5xl font-light leading-tight">
-              Ready to see what your
+              {t('cta.title1')}
               <br />
               <span className="italic bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
-                data is hiding?
+                {t('cta.title2')}
               </span>
             </h2>
 
             <p className="mt-8 text-white/40 max-w-md mx-auto">
-              Join the waitlist and be among the first to experience visual
-              feature engineering.
+              {t('cta.description')}
             </p>
 
             <div className="mt-12 max-w-md mx-auto">
@@ -503,19 +522,19 @@ export default function LandingPage() {
                 href="/canvas"
                 className="hover:text-primary-400 transition-colors"
               >
-                Demo
+                {t('footer.demo')}
               </Link>
               <Link
                 href="#features"
                 className="hover:text-secondary-400 transition-colors"
               >
-                Features
+                {t('footer.features')}
               </Link>
               <Link
                 href="#faq"
                 className="hover:text-primary-400 transition-colors"
               >
-                FAQ
+                {t('footer.faq')}
               </Link>
             </div>
 

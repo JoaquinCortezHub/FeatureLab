@@ -7,6 +7,7 @@ import { colors } from '@/data/config/colors.js';
 
 import '@/css/globals.css';
 import { AnalyticsWrapper } from '@/components/shared/Analytics';
+import { LocaleProvider } from '@/components/providers/LocaleProvider';
 
 const displayFont = Nunito_Sans({
   subsets: ['latin'],
@@ -127,13 +128,15 @@ export default function RootLayout({
 
       <body className="flex flex-col bg-white text-black antialiased dark:bg-black dark:text-white min-h-screen">
         <ThemeProviders>
-          <AnalyticsWrapper />
+          <LocaleProvider>
+            <AnalyticsWrapper />
 
-          <div className="w-full flex flex-col justify-between items-center font-sans">
-            <main className="w-full flex flex-col items-stretch mb-auto">
-              {children}
-            </main>
-          </div>
+            <div className="w-full flex flex-col justify-between items-center font-sans">
+              <main className="w-full flex flex-col items-stretch mb-auto">
+                {children}
+              </main>
+            </div>
+          </LocaleProvider>
         </ThemeProviders>
       </body>
     </html>

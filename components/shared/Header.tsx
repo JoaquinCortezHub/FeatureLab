@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import Image from '@/components/shared/Image';
+import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
 
 interface HeaderProps {
   className?: string;
@@ -13,6 +15,7 @@ interface HeaderProps {
 }
 
 export const Header = ({ className, variant = 'dark' }: HeaderProps) => {
+  const t = useTranslations('header');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -26,9 +29,9 @@ export const Header = ({ className, variant = 'dark' }: HeaderProps) => {
   }, []);
 
   const navItems = [
-    { label: 'Features', href: '#features' },
-    { label: 'How it works', href: '#how-it-works' },
-    { label: 'FAQ', href: '#faq' },
+    { label: t('features'), href: '#features' },
+    { label: t('howItWorks'), href: '#how-it-works' },
+    { label: t('faq'), href: '#faq' },
   ];
 
   return (
@@ -71,18 +74,20 @@ export const Header = ({ className, variant = 'dark' }: HeaderProps) => {
 
         {/* CTA */}
         <div className="flex items-center gap-4">
+          <LanguageSwitcher className="hidden sm:flex" />
+
           <Link
             href="/canvas"
             className="hidden sm:block text-sm text-white/40 hover:text-white/80 transition-colors"
           >
-            Demo
+            {t('demo')}
           </Link>
 
           <Link
             href="#waitlist"
             className="text-sm px-4 py-2 rounded-lg bg-gradient-to-r from-primary-500 to-secondary-500 text-white hover:from-primary-600 hover:to-secondary-600 transition-all shadow-lg shadow-primary-500/20"
           >
-            Join waitlist
+            {t('joinWaitlist')}
           </Link>
 
           {/* Mobile menu button */}
@@ -124,8 +129,11 @@ export const Header = ({ className, variant = 'dark' }: HeaderProps) => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-sm text-white/60 hover:text-white py-3 transition-colors"
               >
-                Demo
+                {t('demo')}
               </Link>
+              <div className="py-3 border-t border-white/5 mt-2">
+                <LanguageSwitcher />
+              </div>
             </nav>
           </motion.div>
         )}

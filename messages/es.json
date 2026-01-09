@@ -1,0 +1,129 @@
+{
+  "header": {
+    "features": "Características",
+    "howItWorks": "Cómo funciona",
+    "faq": "Preguntas frecuentes",
+    "demo": "Demo",
+    "joinWaitlist": "Únete a la lista"
+  },
+  "hero": {
+    "badge": "Ahora en beta privada",
+    "title1": "Diseña",
+    "title2": "características",
+    "title3": "visualmente",
+    "description": "Deja de adivinar qué características importan. Arrastra nodos, dibuja conexiones y deja que la IA descubra patrones ocultos en tus datos.",
+    "tryDemo": "Prueba el demo",
+    "noSignup": "Sin registro",
+    "scroll": "Desliza"
+  },
+  "problem": {
+    "label": "El problema",
+    "title": "La ingeniería de características requiere",
+    "titleHighlight": "experiencia que no tienes tiempo de adquirir",
+    "description1": "Encontrar las características correctas para modelos ML requiere experiencia en el dominio, experimentación interminable y análisis manual de correlaciones. Horas escribiendo scripts, ejecutando estadísticas, inspeccionando distribuciones—solo para perder el patrón obvio escondido a simple vista.",
+    "description2": "cambia eso. Un lienzo visual donde exploras datos intuitivamente, mientras la IA revela las ideas que de otro modo perderías.",
+    "productName": "FeatureLab"
+  },
+  "features": {
+    "label": "Capacidades",
+    "title": "Todo lo que necesitas para",
+    "titleHighlight": "explorar datos",
+    "dragDrop": {
+      "title": "Lienzo Drag & Drop",
+      "description": "Mueve nodos intuitivamente. Organiza tu flujo de trabajo visualmente."
+    },
+    "smartConnections": {
+      "title": "Conexiones Inteligentes",
+      "description": "Dibuja relaciones entre características. Ve la fuerza de correlación al instante."
+    },
+    "aiInsights": {
+      "title": "Insights de IA",
+      "description": "Deja que la IA descubra patrones y anomalías que habrías pasado por alto."
+    },
+    "featureStats": {
+      "title": "Estadísticas de Características",
+      "description": "Distribuciones, valores faltantes, scores de importancia—todo en el lienzo."
+    },
+    "instantCharts": {
+      "title": "Gráficos Instantáneos",
+      "description": "Genera visualizaciones con un clic. Sin código requerido."
+    },
+    "mlExport": {
+      "title": "Exportación para ML",
+      "description": "Exporta características diseñadas en formatos listos para tu stack."
+    }
+  },
+  "useCases": {
+    "label": "Casos de uso",
+    "title": "Construido para",
+    "titleHighlight": "diferentes necesidades",
+    "description": "Ya sea que seas nuevo en un dominio o estés contra el reloj, FeatureLab se adapta a tu flujo de trabajo."
+  },
+  "howItWorks": {
+    "label": "Cómo funciona",
+    "title": "Tres pasos hacia",
+    "titleHighlight": "insights",
+    "upload": {
+      "title": "Sube",
+      "description": "Arrastra tu CSV. Lo procesamos al instante."
+    },
+    "explore": {
+      "title": "Explora",
+      "description": "Crea nodos. Dibuja conexiones. Descubre."
+    },
+    "export": {
+      "title": "Exporta",
+      "description": "Guarda insights. Construye mejores modelos."
+    }
+  },
+  "faq": {
+    "label": "Preguntas frecuentes",
+    "title": "Preguntas",
+    "titleHighlight": "comunes",
+    "items": {
+      "whatIs": {
+        "question": "¿Qué es FeatureLab?",
+        "answer": "FeatureLab es una herramienta visual de ingeniería de características para científicos de datos e ingenieros de ML. Te ayuda a explorar datasets, descubrir correlaciones y diseñar características usando una interfaz de lienzo intuitiva—sin código requerido para la fase de exploración."
+      },
+      "aiInsights": {
+        "question": "¿Cómo funciona la generación de insights de IA?",
+        "answer": "Nuestra IA analiza tu dataset para detectar correlaciones, identificar predictores potenciales, detectar anomalías y sugerir transformaciones. Todos los insights vienen con scores de confianza para que puedas priorizar lo que importa."
+      },
+      "fileFormats": {
+        "question": "¿Qué formatos de archivo son compatibles?",
+        "answer": "Actualmente archivos CSV de hasta 10MB. Procesamos tus datos al instante y creamos una vista previa interactiva. Excel, JSON y conexiones a bases de datos están en nuestra hoja de ruta."
+      },
+      "security": {
+        "question": "¿Mis datos están seguros?",
+        "answer": "Sí. Los datos se procesan localmente en tu navegador durante la exploración. Al usar funciones de IA, los datos se transmiten de forma segura y nunca se almacenan después del procesamiento."
+      },
+      "pricing": {
+        "question": "¿Cuánto costará?",
+        "answer": "Estamos en beta privada ofreciendo acceso anticipado gratuito a miembros de la lista de espera. Los precios se anunciarán antes del lanzamiento general, con descuentos significativos para early adopters."
+      },
+      "availability": {
+        "question": "¿Cuándo estará disponible?",
+        "answer": "La beta pública está programada para Q2 2026. Únete a la lista de espera para acceso anticipado y para ayudar a dar forma al producto con tus comentarios."
+      }
+    }
+  },
+  "cta": {
+    "title1": "¿Listo para ver qué esconden",
+    "title2": "tus datos?",
+    "description": "Únete a la lista de espera y sé de los primeros en experimentar la ingeniería de características visual."
+  },
+  "waitlistForm": {
+    "placeholder": "tu@empresa.com",
+    "button": "Únete a la lista",
+    "success": "Estás en la lista. Te contactaremos pronto.",
+    "errorInvalid": "Por favor ingresa un email válido",
+    "errorDuplicate": "Ya estás en la lista",
+    "errorGeneric": "Algo salió mal. Por favor intenta de nuevo.",
+    "socialProof": "500+ científicos de datos en la lista de espera"
+  },
+  "footer": {
+    "demo": "Demo",
+    "features": "Características",
+    "faq": "Preguntas frecuentes"
+  }
+}

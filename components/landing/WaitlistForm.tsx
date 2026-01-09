@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check, Loader2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { supabase } from '@/lib/supabase';
 
@@ -20,6 +21,7 @@ export const WaitlistForm = ({
   variant = 'default',
   className,
 }: WaitlistFormProps) => {
+  const t = useTranslations('waitlistForm');
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'duplicate'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -30,7 +32,7 @@ export const WaitlistForm = ({
 
       if (!validateEmail(email)) {
         setStatus('error');
-        setErrorMessage('Please enter a valid email');
+        setErrorMessage(t('errorInvalid'));
         return;
       }
 
@@ -44,10 +46,10 @@ export const WaitlistForm = ({
         if (error) {
           if (error.code === '23505') {
             setStatus('duplicate');
-            setErrorMessage("You're already on the list");
+            setErrorMessage(t('errorDuplicate'));
           } else {
             setStatus('error');
-            setErrorMessage('Something went wrong. Please try again.');
+            setErrorMessage(t('errorGeneric'));
           }
           return;
         }
@@ -57,7 +59,7 @@ export const WaitlistForm = ({
       } catch (insertError) {
         console.error(insertError);
         setStatus('error');
-        setErrorMessage('Something went wrong. Please try again.');
+        setErrorMessage(t('errorGeneric'));
       }
     },
     [email]
@@ -85,7 +87,7 @@ export const WaitlistForm = ({
               <Check className="h-3 w-3 text-primary-400" />
             </motion.div>
             <span className="text-sm text-white/60">
-              You&apos;re on the list. We&apos;ll be in touch.
+              {t('success')}
             </span>
           </motion.div>
         ) : (
@@ -108,7 +110,7 @@ export const WaitlistForm = ({
                       setStatus('idle');
                     }
                   }}
-                  placeholder="you@company.com"
+                  placeholder={t('placeholder')}
                   disabled={status === 'loading'}
                   className={cn(
                     'w-full bg-white/[0.03] border rounded-lg',
@@ -151,7 +153,7 @@ export const WaitlistForm = ({
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
                   <>
-                    <span>Join waitlist</span>
+                    <span>{t('button')}</span>
                     <ArrowRight className="h-4 w-4" />
                   </>
                 )}
@@ -163,7 +165,7 @@ export const WaitlistForm = ({
 
       {status !== 'success' && !isCompact && (
         <p className="mt-4 text-xs text-white/20">
-          500+ data scientists on the waitlist
+          {t('socialProof')}
         </p>
       )}
     </div>
