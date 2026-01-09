@@ -4,43 +4,16 @@ import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/lib/supabase';
 
 interface WaitlistFormProps {
   variant?: 'default' | 'compact';
   className?: string;
 }
 
-const STORAGE_KEY = 'featurelab_waitlist';
-
 const validateEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
-};
-
-const getStoredEmails = (): string[] => {
-  if (typeof window === 'undefined') {
-    return [];
-  }
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
-  } catch {
-    return [];
-  }
-};
-
-const storeEmail = (email: string): boolean => {
-  try {
-    const emails = getStoredEmails();
-    if (emails.includes(email.toLowerCase())) {
-      return false;
-    }
-    emails.push(email.toLowerCase());
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(emails));
-    return true;
-  } catch {
-    return false;
-  }
 };
 
 export const WaitlistForm = ({
@@ -63,17 +36,28 @@ export const WaitlistForm = ({
 
       setStatus('loading');
 
-      // Simulate network delay
-      await new Promise((resolve) => setTimeout(resolve, 600));
+      try {
+        const { error } = await supabase.from('waitlist_emails').insert({
+          email: email.toLowerCase(),
+        });
 
-      const success = storeEmail(email);
+        if (error) {
+          if (error.code === '23505') {
+            setStatus('duplicate');
+            setErrorMessage("You're already on the list");
+          } else {
+            setStatus('error');
+            setErrorMessage('Something went wrong. Please try again.');
+          }
+          return;
+        }
 
-      if (success) {
         setStatus('success');
         setEmail('');
-      } else {
-        setStatus('duplicate');
-        setErrorMessage("You're already on the list");
+      } catch (insertError) {
+        console.error(insertError);
+        setStatus('error');
+        setErrorMessage('Something went wrong. Please try again.');
       }
     },
     [email]

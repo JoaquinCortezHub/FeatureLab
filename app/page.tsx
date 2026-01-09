@@ -309,7 +309,7 @@ export default function LandingPage() {
             viewport={{ once: true }}
             className="max-w-xl mb-20"
           >
-            <span className="text-xs uppercase tracking-[0.2em] text-secondary-400/60 font-medium">
+            <span className="text-xs uppercase tracking-[0.2em] text-primary-400/60 font-medium">
               Capabilities
             </span>
             <h2 className="mt-6 text-3xl md:text-4xl font-light">
@@ -438,7 +438,7 @@ export default function LandingPage() {
             viewport={{ once: true }}
             className="mb-16"
           >
-            <span className="text-xs uppercase tracking-[0.2em] text-secondary-400/60 font-medium">
+            <span className="text-xs uppercase tracking-[0.2em] text-primary-400/60 font-medium">
               FAQ
             </span>
             <h2 className="mt-6 text-3xl md:text-4xl font-light">
