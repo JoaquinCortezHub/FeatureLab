@@ -129,13 +129,13 @@ export default function RootLayout({
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
 
-      <body className="flex flex-col bg-white text-black antialiased dark:bg-gray-950 dark:text-white min-h-screen">
+      <body className="flex flex-col bg-white text-black antialiased dark:bg-black dark:text-white min-h-screen">
         <ThemeProviders>
           <AnalyticsWrapper />
 
           <div className="w-full flex flex-col justify-between items-center font-sans">
             <SearchProvider>
-              <main className="w-full flex flex-col items-center mb-auto">
+              <main className="w-full flex flex-col items-stretch mb-auto">
                 {children}
               </main>
             </SearchProvider>

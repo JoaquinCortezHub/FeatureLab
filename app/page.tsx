@@ -65,8 +65,7 @@ export default function LandingPage() {
     {
       icon: <Zap className="h-5 w-5" />,
       title: 'Instant Charts',
-      description:
-        'Generate visualizations with one click. No code required.',
+      description: 'Generate visualizations with one click. No code required.',
     },
     {
       icon: <Brain className="h-5 w-5" />,
@@ -104,42 +103,52 @@ export default function LandingPage() {
       {/* Subtle textured background */}
       <div className="fixed inset-0 -z-10 bg-black">
         {/* Very subtle noise texture */}
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.015]"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDAwIDQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZUZpbHRlciI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOSIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZUZpbHRlcikiLz48L3N2Zz4=")`,
             backgroundSize: '200px 200px',
           }}
         />
-        
+
         {/* Very subtle grid pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
           <svg className="w-full h-full">
             <defs>
-              <pattern id="subtleGrid" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" strokeWidth="0.5" />
+              <pattern
+                id="subtleGrid"
+                width="60"
+                height="60"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 60 0 L 0 0 0 60"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="0.5"
+                />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#subtleGrid)" />
           </svg>
         </div>
 
-        {/* Blurred gradient overlays throughout the page */}
+        {/* Blurred white gradient overlays throughout the page - single color with varying opacity */}
         {/* Top left - hero area */}
         <div className="absolute top-0 left-0 w-[800px] h-[600px] bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-transparent rounded-full blur-[120px]" />
-        
+
         {/* Top center - hero area */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[500px] bg-gradient-to-b from-white/[0.06] via-white/[0.03] to-transparent rounded-full blur-[100px]" />
-        
+
         {/* Center right - features area */}
         <div className="absolute top-1/2 right-0 w-[700px] h-[600px] bg-gradient-to-l from-white/[0.05] via-white/[0.025] to-transparent rounded-full blur-[140px]" />
-        
+
         {/* Center left - problem section */}
         <div className="absolute top-[60%] left-0 w-[600px] h-[500px] bg-gradient-to-r from-white/[0.05] via-white/[0.025] to-transparent rounded-full blur-[120px]" />
-        
+
         {/* Bottom center - CTA area */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-t from-white/[0.06] via-white/[0.03] to-transparent rounded-full blur-[130px]" />
-        
+
         {/* Bottom right - footer area */}
         <div className="absolute bottom-0 right-0 w-[500px] h-[400px] bg-gradient-to-tl from-white/[0.04] via-white/[0.02] to-transparent rounded-full blur-[110px]" />
       </div>
@@ -184,8 +193,8 @@ export default function LandingPage() {
                 transition={{ duration: 0.6 }}
                 className="mt-8 text-lg text-white/40 leading-relaxed max-w-md"
               >
-                Stop guessing which features matter. Drag nodes, draw connections,
-                and let AI discover patterns hiding in your data.
+                Stop guessing which features matter. Drag nodes, draw
+                connections, and let AI discover patterns hiding in your data.
               </motion.p>
 
               <motion.div
@@ -209,7 +218,9 @@ export default function LandingPage() {
                   Try the demo
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
-                <span className="text-xs text-white/20">No signup required</span>
+                <span className="text-xs text-white/20">
+                  No signup required
+                </span>
               </motion.div>
             </motion.div>
 
@@ -232,7 +243,9 @@ export default function LandingPage() {
           transition={{ delay: 2 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3"
         >
-          <span className="text-[10px] uppercase tracking-[0.3em] text-white/20">Scroll</span>
+          <span className="text-[10px] uppercase tracking-[0.3em] text-white/20">
+            Scroll
+          </span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
@@ -257,7 +270,9 @@ export default function LandingPage() {
               <h2 className="mt-6 text-3xl md:text-4xl font-light leading-tight">
                 Feature engineering requires
                 <br />
-                <span className="text-white/40">expertise you don&apos;t have time for</span>
+                <span className="text-white/40">
+                  expertise you don&apos;t have time for
+                </span>
               </h2>
             </motion.div>
 
@@ -269,14 +284,16 @@ export default function LandingPage() {
               className="lg:pt-12"
             >
               <p className="text-white/40 leading-relaxed">
-                Finding the right features for ML models requires domain expertise,
-                endless experimentation, and manual correlation analysis. Hours spent
-                writing scripts, running statistics, inspecting distributions—only to
-                miss the obvious pattern hiding in plain sight.
+                Finding the right features for ML models requires domain
+                expertise, endless experimentation, and manual correlation
+                analysis. Hours spent writing scripts, running statistics,
+                inspecting distributions—only to miss the obvious pattern hiding
+                in plain sight.
               </p>
               <p className="mt-6 text-white/40 leading-relaxed">
-                <span className="text-primary-400/80">FeatureLab</span> changes that. A visual canvas where you explore data
-                intuitively, while AI surfaces the insights you&apos;d otherwise miss.
+                <span className="text-primary-400/80">FeatureLab</span> changes
+                that. A visual canvas where you explore data intuitively, while
+                AI surfaces the insights you&apos;d otherwise miss.
               </p>
             </motion.div>
           </div>
@@ -303,7 +320,7 @@ export default function LandingPage() {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, i) => (
               <motion.div
                 key={feature.title}
@@ -311,13 +328,15 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="bg-black p-8 md:p-10 group hover:bg-white/[0.02] transition-colors relative overflow-hidden"
+                className="p-8 md:p-10 group hover:bg-white/[0.02] transition-colors relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="mb-6 text-white/30 group-hover:text-primary-400 transition-colors">
                   {feature.icon}
                 </div>
-                <h3 className="text-lg font-medium mb-2 group-hover:text-white transition-colors">{feature.title}</h3>
+                <h3 className="text-lg font-medium mb-2 group-hover:text-white transition-colors">
+                  {feature.title}
+                </h3>
                 <p className="text-sm text-white/40 leading-relaxed">
                   {feature.description}
                 </p>
@@ -356,7 +375,10 @@ export default function LandingPage() {
       </section>
 
       {/* How it Works */}
-      <section id="how-it-works" className="py-32 md:py-48 border-t border-white/5">
+      <section
+        id="how-it-works"
+        className="py-32 md:py-48 border-t border-white/5"
+      >
         <div className="mx-auto max-w-7xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -448,8 +470,8 @@ export default function LandingPage() {
             </h2>
 
             <p className="mt-8 text-white/40 max-w-md mx-auto">
-              Join the waitlist and be among the first to experience
-              visual feature engineering.
+              Join the waitlist and be among the first to experience visual
+              feature engineering.
             </p>
 
             <div className="mt-12 max-w-md mx-auto">
@@ -477,13 +499,22 @@ export default function LandingPage() {
             </div>
 
             <div className="flex items-center gap-8 text-sm text-white/30">
-              <Link href="/canvas" className="hover:text-primary-400 transition-colors">
+              <Link
+                href="/canvas"
+                className="hover:text-primary-400 transition-colors"
+              >
                 Demo
               </Link>
-              <Link href="#features" className="hover:text-secondary-400 transition-colors">
+              <Link
+                href="#features"
+                className="hover:text-secondary-400 transition-colors"
+              >
                 Features
               </Link>
-              <Link href="#faq" className="hover:text-primary-400 transition-colors">
+              <Link
+                href="#faq"
+                className="hover:text-primary-400 transition-colors"
+              >
                 FAQ
               </Link>
             </div>
