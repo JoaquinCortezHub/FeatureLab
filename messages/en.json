@@ -59,6 +59,33 @@
     "titleHighlight": "different needs",
     "description": "Whether you're new to a domain or racing against deadlines, FeatureLab adapts to your workflow."
   },
+  "personas": {
+    "labels": {
+      "challenge": "Challenge",
+      "solution": "Solution"
+    },
+    "mlEngineer": {
+      "role": "ML Engineer",
+      "context": "New to the industry, tasked with improving an existing proprietary model",
+      "challenge": "Lacks domain expertise to identify which features matter most. Needs to quickly understand data relationships without weeks of research.",
+      "solution": "Uses FeatureLab to visually explore the database schema, discover correlations, and identify high-impact features in days instead of weeks.",
+      "highlight": "Days instead of weeks"
+    },
+    "dataScientist": {
+      "role": "Data Scientist",
+      "context": "At a fast-moving startup building a new product",
+      "challenge": "Needs to rapidly prototype and iterate on features. Can't afford to spend weeks on manual feature engineering when product requirements change weekly.",
+      "solution": "Leverages FeatureLab's visual canvas to experiment with different feature combinations, validate hypotheses quickly, and adapt to changing requirements in real-time.",
+      "highlight": "Rapid iteration"
+    },
+    "productAnalyst": {
+      "role": "Product Analyst",
+      "context": "Needs to understand user behavior patterns for product decisions",
+      "challenge": "Doesn't have deep ML expertise but needs to identify which user actions predict churn, conversion, or engagement to inform product strategy.",
+      "solution": "Uses FeatureLab's intuitive interface to explore user data visually, discover patterns with AI assistance, and communicate findings to stakeholders without writing code.",
+      "highlight": "No coding required"
+    }
+  },
   "howItWorks": {
     "label": "How it works",
     "title": "Three steps to",

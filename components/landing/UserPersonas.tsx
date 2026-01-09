@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Briefcase, Rocket, TrendingUp } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
 interface Persona {
@@ -13,45 +14,14 @@ interface Persona {
   highlight: string;
 }
 
-const personas: Persona[] = [
-  {
-    icon: <Briefcase className="h-5 w-5" />,
-    role: 'ML Engineer',
-    context: 'New to the industry, tasked with improving an existing proprietary model',
-    challenge:
-      'Lacks domain expertise to identify which features matter most. Needs to quickly understand data relationships without weeks of research.',
-    solution:
-      'Uses FeatureLab to visually explore the database schema, discover correlations, and identify high-impact features in days instead of weeks.',
-    highlight: 'Days instead of weeks',
-  },
-  {
-    icon: <Rocket className="h-5 w-5" />,
-    role: 'Data Scientist',
-    context: 'At a fast-moving startup building a new product',
-    challenge:
-      'Needs to rapidly prototype and iterate on features. Can&apos;t afford to spend weeks on manual feature engineering when product requirements change weekly.',
-    solution:
-      'Leverages FeatureLab&apos;s visual canvas to experiment with different feature combinations, validate hypotheses quickly, and adapt to changing requirements in real-time.',
-    highlight: 'Rapid iteration',
-  },
-  {
-    icon: <TrendingUp className="h-5 w-5" />,
-    role: 'Product Analyst',
-    context: 'Needs to understand user behavior patterns for product decisions',
-    challenge:
-      'Doesn&apos;t have deep ML expertise but needs to identify which user actions predict churn, conversion, or engagement to inform product strategy.',
-    solution:
-      'Uses FeatureLab&apos;s intuitive interface to explore user data visually, discover patterns with AI assistance, and communicate findings to stakeholders without writing code.',
-    highlight: 'No coding required',
-  },
-];
-
 interface PersonaCardProps {
   persona: Persona;
   index: number;
 }
 
 const PersonaCard = ({ persona, index }: PersonaCardProps) => {
+  const t = useTranslations('personas.labels');
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -84,7 +54,7 @@ const PersonaCard = ({ persona, index }: PersonaCardProps) => {
         {/* Challenge */}
         <div className="mb-4 rounded-lg border border-white/5 bg-white/[0.01] p-4">
           <p className="text-xs uppercase tracking-wide text-white/40 font-medium mb-2">
-            Challenge
+            {t('challenge')}
           </p>
           <p className="text-sm text-white/50 leading-relaxed">
             {persona.challenge}
@@ -94,7 +64,7 @@ const PersonaCard = ({ persona, index }: PersonaCardProps) => {
         {/* Solution */}
         <div className="rounded-lg border border-secondary-500/20 bg-secondary-500/[0.05] p-4">
           <p className="text-xs uppercase tracking-wide text-secondary-400/60 font-medium mb-2">
-            Solution
+            {t('solution')}
           </p>
           <p className="text-sm text-white/70 leading-relaxed">
             {persona.solution}
@@ -111,6 +81,35 @@ const PersonaCard = ({ persona, index }: PersonaCardProps) => {
 };
 
 export const UserPersonas = ({ className }: { className?: string }) => {
+  const t = useTranslations('personas');
+
+  const personas: Persona[] = [
+    {
+      icon: <Briefcase className="h-5 w-5" />,
+      role: t('mlEngineer.role'),
+      context: t('mlEngineer.context'),
+      challenge: t('mlEngineer.challenge'),
+      solution: t('mlEngineer.solution'),
+      highlight: t('mlEngineer.highlight'),
+    },
+    {
+      icon: <Rocket className="h-5 w-5" />,
+      role: t('dataScientist.role'),
+      context: t('dataScientist.context'),
+      challenge: t('dataScientist.challenge'),
+      solution: t('dataScientist.solution'),
+      highlight: t('dataScientist.highlight'),
+    },
+    {
+      icon: <TrendingUp className="h-5 w-5" />,
+      role: t('productAnalyst.role'),
+      context: t('productAnalyst.context'),
+      challenge: t('productAnalyst.challenge'),
+      solution: t('productAnalyst.solution'),
+      highlight: t('productAnalyst.highlight'),
+    },
+  ];
+
   return (
     <div className={cn('w-full', className)}>
       <div className="grid md:grid-cols-3 gap-6">

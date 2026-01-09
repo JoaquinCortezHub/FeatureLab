@@ -9,19 +9,19 @@
   "hero": {
     "badge": "Ahora en beta privada",
     "title1": "Diseña",
-    "title2": "características",
+    "title2": "features",
     "title3": "visualmente",
-    "description": "Deja de adivinar qué características importan. Arrastra nodos, dibuja conexiones y deja que la IA descubra patrones ocultos en tus datos.",
-    "tryDemo": "Prueba el demo",
+    "description": "Deja de adivinar qué features importan. Arrastra nodos, dibuja conexiones y deja que la IA descubra patrones ocultos en tus datos.",
+    "tryDemo": "Prueba la demo",
     "noSignup": "Sin registro",
     "scroll": "Desliza"
   },
   "problem": {
     "label": "El problema",
-    "title": "La ingeniería de características requiere",
+    "title": "Para encontrar las features ideales se requiere",
     "titleHighlight": "experiencia que no tienes tiempo de adquirir",
-    "description1": "Encontrar las características correctas para modelos ML requiere experiencia en el dominio, experimentación interminable y análisis manual de correlaciones. Horas escribiendo scripts, ejecutando estadísticas, inspeccionando distribuciones—solo para perder el patrón obvio escondido a simple vista.",
-    "description2": "cambia eso. Un lienzo visual donde exploras datos intuitivamente, mientras la IA revela las ideas que de otro modo perderías.",
+    "description1": "Encontrar las features correctas para modelos ML requiere experiencia en el dominio, experimentación interminable y análisis manual de correlaciones. Horas escribiendo scripts, ejecutando estadísticas, inspeccionando distribuciones—solo para pasar por alto el patrón obvio escondido a simple vista.",
+    "description2": "cambia eso. Una interfaz visual donde exploras datos intuitivamente, mientras la IA revela las ideas que de otro modo perderías.",
     "productName": "FeatureLab"
   },
   "features": {
@@ -29,7 +29,7 @@
     "title": "Todo lo que necesitas para",
     "titleHighlight": "explorar datos",
     "dragDrop": {
-      "title": "Lienzo Drag & Drop",
+      "title": "Interfaz Drag & Drop",
       "description": "Mueve nodos intuitivamente. Organiza tu flujo de trabajo visualmente."
     },
     "smartConnections": {
@@ -41,15 +41,15 @@
       "description": "Deja que la IA descubra patrones y anomalías que habrías pasado por alto."
     },
     "featureStats": {
-      "title": "Estadísticas de Características",
-      "description": "Distribuciones, valores faltantes, scores de importancia—todo en el lienzo."
+      "title": "Estadísticas de las features",
+      "description": "Distribuciones, valores faltantes, scores de importancia. Todo en el lienzo."
     },
     "instantCharts": {
       "title": "Gráficos Instantáneos",
       "description": "Genera visualizaciones con un clic. Sin código requerido."
     },
     "mlExport": {
-      "title": "Exportación para ML",
+      "title": "Exports para tus modelos",
       "description": "Exporta características diseñadas en formatos listos para tu stack."
     }
   },
@@ -59,9 +59,36 @@
     "titleHighlight": "diferentes necesidades",
     "description": "Ya sea que seas nuevo en un dominio o estés contra el reloj, FeatureLab se adapta a tu flujo de trabajo."
   },
+  "personas": {
+    "labels": {
+      "challenge": "Desafío",
+      "solution": "Solución"
+    },
+    "mlEngineer": {
+      "role": "Ingeniero ML",
+      "context": "Nuevo en la industria, encargado de mejorar un modelo propietario existente",
+      "challenge": "Carece de experiencia en el dominio para identificar qué características importan más. Necesita entender rápidamente las relaciones de datos sin semanas de investigación.",
+      "solution": "Usa FeatureLab para explorar visualmente el esquema de la base de datos, descubrir correlaciones e identificar características de alto impacto en días en lugar de semanas.",
+      "highlight": "Días en lugar de semanas"
+    },
+    "dataScientist": {
+      "role": "Científico de Datos",
+      "context": "En una startup de rápido movimiento construyendo un nuevo producto",
+      "challenge": "Necesita prototipar e iterar rápidamente en características. No puede permitirse pasar semanas en ingeniería manual de características cuando los requisitos del producto cambian semanalmente.",
+      "solution": "Aprovecha el lienzo visual de FeatureLab para experimentar con diferentes combinaciones de características, validar hipótesis rápidamente y adaptarse a requisitos cambiantes en tiempo real.",
+      "highlight": "Iteración rápida"
+    },
+    "productAnalyst": {
+      "role": "Analista de Producto",
+      "context": "Necesita entender patrones de comportamiento del usuario para decisiones de producto",
+      "challenge": "No tiene experiencia profunda en ML pero necesita identificar qué acciones del usuario predicen abandono, conversión o compromiso para informar la estrategia del producto.",
+      "solution": "Usa la interfaz intuitiva de FeatureLab para explorar datos de usuarios visualmente, descubrir patrones con asistencia de IA y comunicar hallazgos a las partes interesadas sin escribir código.",
+      "highlight": "Sin código requerido"
+    }
+  },
   "howItWorks": {
     "label": "Cómo funciona",
-    "title": "Tres pasos hacia",
+    "title": "Tres pasos hacia tus",
     "titleHighlight": "insights",
     "upload": {
       "title": "Sube",
@@ -78,8 +105,8 @@
   },
   "faq": {
     "label": "Preguntas frecuentes",
-    "title": "Preguntas",
-    "titleHighlight": "comunes",
+    "title": "Estamos aquí para",
+    "titleHighlight": "responder tus preguntas",
     "items": {
       "whatIs": {
         "question": "¿Qué es FeatureLab?",
@@ -110,7 +137,7 @@
   "cta": {
     "title1": "¿Listo para ver qué esconden",
     "title2": "tus datos?",
-    "description": "Únete a la lista de espera y sé de los primeros en experimentar la ingeniería de características visual."
+    "description": "Únete a la lista de espera y sé de los primeros en experimentar el feature engineering visual."
   },
   "waitlistForm": {
     "placeholder": "tu@empresa.com",
