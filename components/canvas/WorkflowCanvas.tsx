@@ -114,7 +114,7 @@ export const WorkflowCanvas = ({
       ref={containerRef}
       className={cn(
         'relative h-full w-full overflow-hidden',
-        'bg-gray-50 dark:bg-gray-900',
+        'bg-[#1E1E1E] text-white',
         isPanning ? 'cursor-grabbing' : 'cursor-default',
         className
       )}

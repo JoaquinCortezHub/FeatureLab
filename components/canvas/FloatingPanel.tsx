@@ -47,10 +47,10 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 const categoryColors: Record<string, string> = {
-  Data: 'text-primary-500',
-  Visualize: 'text-secondary-500',
-  'AI Analysis': 'text-purple-500',
-  Transform: 'text-amber-500',
+  Data: 'text-primary-300',
+  Visualize: 'text-secondary-300',
+  'AI Analysis': 'text-purple-300',
+  Transform: 'text-amber-300',
 };
 
 export const FloatingPanel = ({
@@ -90,8 +90,7 @@ export const FloatingPanel = ({
           transition={{ duration: 0.15 }}
           className={cn(
             'fixed z-50 w-72 overflow-hidden rounded-xl border shadow-2xl',
-            'bg-white dark:bg-gray-800',
-            'border-gray-200 dark:border-gray-700',
+            'bg-[#1E1E1E] border-white/10',
             className
           )}
           style={{
@@ -99,13 +98,13 @@ export const FloatingPanel = ({
             top: Math.min(position.y, window.innerHeight - 400),
           }}
         >
-          <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3 dark:border-gray-700">
-            <span className="font-semibold text-gray-900 dark:text-gray-100">
+          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+            <span className="font-semibold text-white">
               Add to Canvas
             </span>
             <button
               onClick={onClose}
-              className="rounded-lg p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+              className="rounded-lg p-1 text-white/50 hover:bg-white/5 hover:text-white"
             >
               <X className="h-4 w-4" />
             </button>
@@ -113,13 +112,13 @@ export const FloatingPanel = ({
 
           <div className="p-3">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
               <Input
                 type="text"
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-9 pl-9 text-sm"
+                className="h-9 pl-9 text-sm bg-white/5 border-white/10 text-white placeholder:text-white/30"
               />
             </div>
           </div>
@@ -129,7 +128,7 @@ export const FloatingPanel = ({
               <div key={category} className="mb-3">
                 <div className={cn(
                   'mb-2 px-1 text-xs font-semibold uppercase tracking-wider',
-                  categoryColors[category] || 'text-gray-500'
+                  categoryColors[category] || 'text-white/50'
                 )}>
                   {category}
                 </div>
@@ -145,23 +144,22 @@ export const FloatingPanel = ({
                         }}
                         className={cn(
                           'group flex w-full items-start gap-3 rounded-lg px-3 py-2.5 text-left transition-all',
-                          'hover:bg-gray-50 dark:hover:bg-gray-700/50',
+                          'hover:bg-white/5',
                           'focus:outline-none focus:ring-2 focus:ring-primary-500/20'
                         )}
                       >
                         <div className={cn(
                           'mt-0.5 rounded-lg p-1.5 transition-colors',
-                          'bg-gray-100 group-hover:bg-gray-200',
-                          'dark:bg-gray-700 dark:group-hover:bg-gray-600'
+                          'bg-white/5 group-hover:bg-white/10'
                         )}>
-                          <Icon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                          <Icon className="h-4 w-4 text-white/80" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                          <div className="font-medium text-white text-sm">
                             {item.label}
                           </div>
                           {item.description && (
-                            <div className="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">
+                            <div className="text-xs text-white/50 line-clamp-1">
                               {item.description}
                             </div>
                           )}
@@ -175,7 +173,7 @@ export const FloatingPanel = ({
 
             {filteredItems.length === 0 && (
               <div className="py-8 text-center">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-sm text-white/50">
                   No items found
                 </p>
               </div>

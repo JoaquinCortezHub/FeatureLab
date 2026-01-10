@@ -30,7 +30,7 @@ export const CanvasLayout = ({
 }: CanvasLayoutProps) => {
   return (
     <TooltipProvider>
-      <div className="h-screen w-full overflow-hidden bg-gray-50 dark:bg-gray-900">
+      <div className="h-screen w-full overflow-hidden bg-[#1E1E1E] text-white">
         <CanvasSidebar
           navItems={sidebarNavItems}
           utilityItems={sidebarUtilityItems}

@@ -16,7 +16,10 @@ import {
   Cell,
 } from 'recharts';
 import { cn } from '@/lib/utils';
-import { ChartNodeData, Position } from '@/components/canvas/models/canvas-types';
+import {
+  ChartNodeData,
+  Position,
+} from '@/components/canvas/models/canvas-types';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -51,7 +54,10 @@ export const ChartNode = ({
 
   const handleDragStart = () => setIsDragging(true);
 
-  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (
+    _: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo,
+  ) => {
     setIsDragging(false);
     onPositionChange?.(node.id, {
       x: node.position.x + info.offset.x,
@@ -65,14 +71,18 @@ export const ChartNode = ({
         return (
           <ResponsiveContainer width="100%" height={140}>
             <ScatterChart margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="currentColor" className="text-gray-200 dark:text-gray-700" />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="currentColor"
+                className="text-white/10"
+              />
               <XAxis
                 type="number"
                 dataKey="x"
                 tick={{ fontSize: 10 }}
                 tickLine={false}
                 axisLine={false}
-                className="text-gray-400"
+                className="text-white/50"
               />
               <YAxis
                 type="number"
@@ -80,12 +90,12 @@ export const ChartNode = ({
                 tick={{ fontSize: 10 }}
                 tickLine={false}
                 axisLine={false}
-                className="text-gray-400"
+                className="text-white/50"
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: 'var(--tooltip-bg, #fff)',
-                  border: '1px solid var(--tooltip-border, #e5e7eb)',
+                  backgroundColor: '#252525',
+                  border: '1px solid rgba(255,255,255,0.12)',
                   borderRadius: '6px',
                   fontSize: '12px',
                 }}
@@ -94,7 +104,11 @@ export const ChartNode = ({
                 {node.data.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
-                    fill={entry.approved ? CHART_COLORS.success : CHART_COLORS.warning}
+                    fill={
+                      entry.approved
+                        ? CHART_COLORS.success
+                        : CHART_COLORS.warning
+                    }
                   />
                 ))}
               </Scatter>
@@ -105,31 +119,43 @@ export const ChartNode = ({
       case 'histogram':
         return (
           <ResponsiveContainer width="100%" height={140}>
-            <BarChart data={node.data} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="currentColor" className="text-gray-200 dark:text-gray-700" vertical={false} />
+            <BarChart
+              data={node.data}
+              margin={{ top: 10, right: 10, bottom: 0, left: 0 }}
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="currentColor"
+                className="text-white/10"
+                vertical={false}
+              />
               <XAxis
                 dataKey="range"
                 tick={{ fontSize: 9 }}
                 tickLine={false}
                 axisLine={false}
-                className="text-gray-400"
+                className="text-white/50"
               />
               <YAxis
                 tick={{ fontSize: 10 }}
                 tickLine={false}
                 axisLine={false}
-                className="text-gray-400"
+                className="text-white/50"
                 width={30}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: 'var(--tooltip-bg, #fff)',
-                  border: '1px solid var(--tooltip-border, #e5e7eb)',
+                  backgroundColor: '#252525',
+                  border: '1px solid rgba(255,255,255,0.12)',
                   borderRadius: '6px',
                   fontSize: '12px',
                 }}
               />
-              <Bar dataKey="count" fill={CHART_COLORS.secondary} radius={[4, 4, 0, 0]} />
+              <Bar
+                dataKey="count"
+                fill={CHART_COLORS.secondary}
+                radius={[4, 4, 0, 0]}
+              />
             </BarChart>
           </ResponsiveContainer>
         );
@@ -148,40 +174,45 @@ export const ChartNode = ({
       className={cn(
         'absolute cursor-grab select-none',
         isDragging && 'cursor-grabbing z-50',
-        isSelected && 'z-40'
+        isSelected && 'z-40',
       )}
       style={{ left: node.position.x, top: node.position.y }}
       drag
       dragMomentum={false}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
-      onClick={(e) => { e.stopPropagation(); onSelect?.(node.id); }}
+      onClick={(e) => {
+        e.stopPropagation();
+        onSelect?.(node.id);
+      }}
       whileHover={{ scale: 1.01 }}
       whileDrag={{ scale: 1.02 }}
     >
       <div
         className={cn(
           'w-64 overflow-hidden rounded-xl border shadow-md transition-all',
-          'bg-white dark:bg-gray-800',
-          'border-gray-200 dark:border-gray-600',
-          isSelected && 'ring-2 ring-secondary-500 ring-offset-2 dark:ring-offset-gray-900',
-          isDragging && 'shadow-xl'
+          'bg-[#252525]',
+          'border-white/10',
+          isSelected &&
+            'ring-2 ring-secondary-500 ring-offset-2 ring-offset-[#1E1E1E]',
+          isDragging && 'shadow-xl',
         )}
       >
-        <div className="flex items-center justify-between border-b border-gray-100 px-3 py-2 dark:border-gray-700">
-          <h4 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
-            {node.title}
-          </h4>
+        <div className="flex items-center justify-between border-b border-white/10 bg-white/5 px-3 py-2">
+          <h4 className="text-sm font-medium text-white">{node.title}</h4>
           <div className="flex items-center gap-1">
             <button
-              onClick={(e) => { e.stopPropagation(); onExpand?.(node.id); }}
-              className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+              onClick={(e) => {
+                e.stopPropagation();
+                onExpand?.(node.id);
+              }}
+              className="rounded p-1 text-white/50 hover:bg-white/10 hover:text-white"
             >
               <Maximize2 className="h-3.5 w-3.5" />
             </button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="rounded p-1 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <button className="rounded p-1 text-white/50 hover:bg-white/10 hover:text-white">
                   <MoreVertical className="h-3.5 w-3.5" />
                 </button>
               </DropdownMenuTrigger>
@@ -194,12 +225,10 @@ export const ChartNode = ({
           </div>
         </div>
 
-        <div className="p-2">
-          {renderChart()}
-        </div>
+        <div className="p-2">{renderChart()}</div>
       </div>
 
-      <div className="absolute -left-1.5 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-gray-300 bg-white dark:border-gray-500 dark:bg-gray-700" />
+      <div className="absolute -left-1.5 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-white/20 bg-[#252525]" />
     </motion.div>
   );
 };

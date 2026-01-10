@@ -91,8 +91,8 @@ export const CanvasMinimap = ({
 
   const nodeColors: Record<string, string> = {
     dataset: 'fill-primary-500',
-    feature: 'fill-gray-400 dark:fill-gray-500',
-    insight: 'fill-purple-400 dark:fill-purple-500',
+    feature: 'fill-gray-500',
+    insight: 'fill-purple-400',
     chart: 'fill-secondary-500',
     transformation: 'fill-amber-500',
   };
@@ -107,19 +107,18 @@ export const CanvasMinimap = ({
       <div
         className={cn(
           'overflow-hidden rounded-xl border shadow-lg',
-          'border-gray-200 bg-white',
-          'dark:border-gray-700 dark:bg-gray-800'
+          'border-white/10 bg-[#1E1E1E]'
         )}
       >
         <svg
           width={MINIMAP_WIDTH}
           height={MINIMAP_HEIGHT}
-          className="bg-gray-50 dark:bg-gray-900"
+          className="bg-[#161616]"
         >
           <rect
             width={MINIMAP_WIDTH}
             height={MINIMAP_HEIGHT}
-            className="fill-gray-50 dark:fill-gray-900"
+            className="fill-[#161616]"
           />
 
           {minimapData.nodeRects.map((rect) => (
@@ -139,40 +138,39 @@ export const CanvasMinimap = ({
       <div
         className={cn(
           'flex items-center justify-between rounded-xl border px-2 py-1.5 shadow-sm',
-          'border-gray-200 bg-white',
-          'dark:border-gray-700 dark:bg-gray-800'
+          'border-white/10 bg-[#1E1E1E]'
         )}
       >
         <Button
           variant="ghost"
           size="icon"
-          className="h-7 w-7"
+          className="h-7 w-7 text-white/70 hover:bg-white/10 hover:text-white"
           onClick={onZoomOut}
           title="Zoom out"
         >
           <ZoomOut className="h-4 w-4" />
         </Button>
 
-        <span className="min-w-12 text-center text-xs font-medium text-gray-600 dark:text-gray-400">
+        <span className="min-w-12 text-center text-xs font-medium text-white/60">
           {Math.round(viewport.zoom * 100)}%
         </span>
 
         <Button
           variant="ghost"
           size="icon"
-          className="h-7 w-7"
+          className="h-7 w-7 text-white/70 hover:bg-white/10 hover:text-white"
           onClick={onZoomIn}
           title="Zoom in"
         >
           <ZoomIn className="h-4 w-4" />
         </Button>
 
-        <div className="mx-1 h-4 w-px bg-gray-200 dark:bg-gray-700" />
+        <div className="mx-1 h-4 w-px bg-white/10" />
 
         <Button
           variant="ghost"
           size="icon"
-          className="h-7 w-7"
+          className="h-7 w-7 text-white/70 hover:bg-white/10 hover:text-white"
           onClick={onResetView}
           title="Reset view"
         >

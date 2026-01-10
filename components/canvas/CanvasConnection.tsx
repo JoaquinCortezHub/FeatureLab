@@ -33,32 +33,32 @@ const NODE_HEIGHTS: Record<string, number> = {
 
 const connectionStyles = {
   'data-flow': {
-    stroke: 'stroke-gray-300 dark:stroke-gray-600',
+    stroke: 'stroke-white/20',
     dashArray: '',
     opacity: 0.8,
   },
   'strong-correlation': {
-    stroke: 'stroke-green-500 dark:stroke-green-400',
+    stroke: 'stroke-green-400',
     dashArray: '',
     opacity: 1,
   },
   'moderate-correlation': {
-    stroke: 'stroke-blue-400 dark:stroke-blue-500',
+    stroke: 'stroke-blue-400',
     dashArray: '8 4',
     opacity: 0.9,
   },
   'weak-correlation': {
-    stroke: 'stroke-gray-400 dark:stroke-gray-500',
+    stroke: 'stroke-white/25',
     dashArray: '4 4',
     opacity: 0.6,
   },
   'inverse-correlation': {
-    stroke: 'stroke-red-400 dark:stroke-red-500',
+    stroke: 'stroke-red-400',
     dashArray: '8 4',
     opacity: 0.9,
   },
   'derives-from': {
-    stroke: 'stroke-purple-400 dark:stroke-purple-500',
+    stroke: 'stroke-purple-400',
     dashArray: '4 2',
     opacity: 0.8,
   },
@@ -165,12 +165,12 @@ export const CanvasConnection = ({
             width="36"
             height="20"
             rx="4"
-            className="fill-white dark:fill-gray-800"
+            className="fill-[#252525]"
           />
           <text
             textAnchor="middle"
             dominantBaseline="middle"
-            className="fill-gray-600 dark:fill-gray-400 text-xs font-medium"
+            className="fill-white/70 text-xs font-medium"
             style={{ fontSize: '11px' }}
           >
             {connection.correlationValue.toFixed(2)}
@@ -230,7 +230,7 @@ export const CanvasConnectionsLayer = ({
         >
           <polygon
             points="0 0, 10 3.5, 0 7"
-            className="fill-gray-400 dark:fill-gray-500"
+            className="fill-white/40"
           />
         </marker>
       </defs>

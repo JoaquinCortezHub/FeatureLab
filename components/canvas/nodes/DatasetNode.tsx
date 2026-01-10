@@ -65,24 +65,24 @@ export const DatasetNode = ({
       <div
         className={cn(
           'w-56 rounded-xl border-2 shadow-md transition-all',
-          'bg-white dark:bg-gray-800',
-          'border-primary-300 dark:border-primary-600',
-          isSelected && 'ring-2 ring-primary-500 ring-offset-2 dark:ring-offset-gray-900',
+          'bg-[#252525]',
+          'border-white/10',
+          isSelected && 'ring-2 ring-primary-500 ring-offset-2 ring-offset-[#1E1E1E]',
           isDragging && 'shadow-xl'
         )}
       >
-        <div className="flex items-center justify-between rounded-t-lg bg-primary-50 px-3 py-2 dark:bg-primary-900/30">
+        <div className="flex items-center justify-between rounded-t-lg bg-white/5 px-3 py-2">
           <div className="flex items-center gap-2">
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary-500 text-white">
               <Database className="h-4 w-4" />
             </div>
-            <span className="font-semibold text-gray-900 dark:text-gray-100">
+            <span className="font-semibold text-white">
               {node.name}
             </span>
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="rounded p-1 text-gray-500 hover:bg-primary-100 dark:hover:bg-primary-800">
+              <button className="rounded p-1 text-white/50 hover:bg-white/10 hover:text-white">
                 <MoreVertical className="h-4 w-4" />
               </button>
             </DropdownMenuTrigger>
@@ -98,18 +98,18 @@ export const DatasetNode = ({
 
         <div className="space-y-2 p-3">
           <div className="grid grid-cols-2 gap-2 text-sm">
-            <div className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
+            <div className="flex items-center gap-1.5 text-white/60">
               <Table2 className="h-3.5 w-3.5" />
               <span>{formatNumber(node.stats.rows)} rows</span>
             </div>
-            <div className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
+            <div className="flex items-center gap-1.5 text-white/60">
               <span className="font-medium">{node.stats.columns}</span>
               <span>columns</span>
             </div>
           </div>
 
           {(node.stats.missingValues > 0 || node.stats.duplicates > 0) && (
-            <div className="flex items-center gap-2 rounded-md bg-amber-50 px-2 py-1.5 text-xs text-amber-700 dark:bg-amber-900/20 dark:text-amber-400">
+            <div className="flex items-center gap-2 rounded-md border border-amber-500/20 bg-amber-500/10 px-2 py-1.5 text-xs text-amber-200">
               <AlertTriangle className="h-3.5 w-3.5" />
               <span>
                 {node.stats.missingValues > 0 && `${formatNumber(node.stats.missingValues)} missing`}
@@ -123,13 +123,13 @@ export const DatasetNode = ({
             {node.columns.slice(0, 4).map((col) => (
               <span
                 key={col}
-                className="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-600 dark:bg-gray-700 dark:text-gray-400"
+                className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-white/70"
               >
                 {col}
               </span>
             ))}
             {node.columns.length > 4 && (
-              <span className="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500 dark:bg-gray-700">
+              <span className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-white/60">
                 +{node.columns.length - 4}
               </span>
             )}
@@ -137,7 +137,7 @@ export const DatasetNode = ({
         </div>
       </div>
 
-      <div className="absolute -right-1.5 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-primary-400 bg-white dark:border-primary-500 dark:bg-gray-700" />
+      <div className="absolute -right-1.5 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-primary-400 bg-[#252525]" />
     </motion.div>
   );
 };

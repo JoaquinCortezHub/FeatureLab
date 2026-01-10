@@ -158,7 +158,7 @@ export const DataUploadPanel = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/50"
+            className="fixed inset-0 z-50 bg-black/70"
             onClick={onClose}
           />
 
@@ -169,27 +169,27 @@ export const DataUploadPanel = ({
             className={cn(
               'fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2',
               'rounded-2xl border shadow-2xl',
-              'bg-white dark:bg-gray-800',
-              'border-gray-200 dark:border-gray-700'
+            'bg-[#1E1E1E]',
+            'border-white/10'
             )}
           >
-            <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+          <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-100 dark:bg-primary-900/30">
-                  <FileSpreadsheet className="h-5 w-5 text-primary-600 dark:text-primary-400" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                <FileSpreadsheet className="h-5 w-5 text-primary-400" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                <h2 className="text-lg font-semibold text-white">
                     Import Dataset
                   </h2>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-sm text-white/50">
                     Upload a CSV file to get started
                   </p>
                 </div>
               </div>
               <button
                 onClick={onClose}
-                className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+              className="rounded-lg p-2 text-white/50 hover:bg-white/5 hover:text-white"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -201,9 +201,9 @@ export const DataUploadPanel = ({
                   className={cn(
                     'relative rounded-xl border-2 border-dashed p-8 text-center transition-colors',
                     dragActive
-                      ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                      : 'border-gray-300 dark:border-gray-600',
-                    'hover:border-primary-400 hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                      ? 'border-primary-500 bg-primary-500/5'
+                      : 'border-white/10',
+                    'hover:border-primary-400 hover:bg-white/5'
                   )}
                   onDragEnter={handleDrag}
                   onDragLeave={handleDrag}
@@ -220,29 +220,29 @@ export const DataUploadPanel = ({
 
                   {isLoading ? (
                     <div className="flex flex-col items-center gap-3">
-                      <Loader2 className="h-10 w-10 animate-spin text-primary-500" />
-                      <p className="text-gray-600 dark:text-gray-400">Processing file...</p>
+                      <Loader2 className="h-10 w-10 animate-spin text-primary-400" />
+                      <p className="text-white/60">Processing file...</p>
                     </div>
                   ) : (
                     <>
-                      <Upload className="mx-auto h-10 w-10 text-gray-400" />
-                      <p className="mt-4 text-gray-600 dark:text-gray-400">
+                      <Upload className="mx-auto h-10 w-10 text-white/30" />
+                      <p className="mt-4 text-white/70">
                         Drag and drop your CSV file here, or{' '}
                         <button
                           onClick={() => inputRef.current?.click()}
-                          className="font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400"
+                          className="font-medium text-primary-400 hover:text-primary-300"
                         >
                           browse
                         </button>
                       </p>
-                      <p className="mt-2 text-sm text-gray-400">
+                      <p className="mt-2 text-sm text-white/50">
                         Supports CSV files up to 10MB
                       </p>
                     </>
                   )}
 
                   {error && (
-                    <div className="mt-4 flex items-center justify-center gap-2 text-sm text-red-600 dark:text-red-400">
+                    <div className="mt-4 flex items-center justify-center gap-2 text-sm text-red-400">
                       <AlertCircle className="h-4 w-4" />
                       {error}
                     </div>
@@ -250,44 +250,45 @@ export const DataUploadPanel = ({
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 rounded-lg bg-green-50 px-4 py-3 dark:bg-green-900/20">
-                    <Check className="h-5 w-5 text-green-600 dark:text-green-400" />
+                  <div className="flex items-center gap-3 rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-3">
+                    <Check className="h-5 w-5 text-green-400" />
                     <div className="flex-1">
-                      <p className="font-medium text-green-800 dark:text-green-300">
+                      <p className="font-medium text-green-200">
                         File parsed successfully
                       </p>
-                      <p className="text-sm text-green-600 dark:text-green-400">
+                      <p className="text-sm text-green-300">
                         {parsedData.rowCount.toLocaleString()} rows, {parsedData.columns.length} columns
                       </p>
                     </div>
                     <button
                       onClick={handleReset}
-                      className="text-sm text-green-700 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300"
+                      className="text-sm text-green-300 hover:text-green-200"
                     >
                       Change file
                     </button>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                    <label className="mb-1.5 block text-sm font-medium text-white/80">
                       Dataset Name
                     </label>
                     <Input
                       value={datasetName}
                       onChange={(e) => setDatasetName(e.target.value)}
                       placeholder="Enter a name for your dataset"
+                      className="border-white/10 bg-white/5 text-white placeholder:text-white/40"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                    <label className="mb-1.5 block text-sm font-medium text-white/80">
                       Columns Detected
                     </label>
                     <div className="flex flex-wrap gap-1.5">
                       {parsedData.columns.map((col) => (
                         <span
                           key={col}
-                          className="rounded-md bg-gray-100 px-2 py-1 text-xs text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+                          className="rounded-md bg-white/5 px-2 py-1 text-xs text-white/70"
                         >
                           {col}
                         </span>
@@ -296,41 +297,41 @@ export const DataUploadPanel = ({
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                    <label className="mb-1.5 block text-sm font-medium text-white/80">
                       Preview (first 5 rows)
                     </label>
-                    <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div className="overflow-x-auto rounded-lg border border-white/10 bg-white/5">
                       <table className="w-full text-xs">
-                        <thead className="bg-gray-50 dark:bg-gray-700">
+                        <thead className="bg-white/5">
                           <tr>
                             {parsedData.columns.slice(0, 5).map((col) => (
                               <th
                                 key={col}
-                                className="px-3 py-2 text-left font-medium text-gray-600 dark:text-gray-300"
+                                className="px-3 py-2 text-left font-medium text-white/70"
                               >
                                 {col}
                               </th>
                             ))}
                             {parsedData.columns.length > 5 && (
-                              <th className="px-3 py-2 text-left font-medium text-gray-400">
+                              <th className="px-3 py-2 text-left font-medium text-white/40">
                                 +{parsedData.columns.length - 5}
                               </th>
                             )}
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                        <tbody className="divide-y divide-white/5">
                           {parsedData.rows.slice(0, 5).map((row, i) => (
                             <tr key={i}>
                               {parsedData.columns.slice(0, 5).map((col) => (
                                 <td
                                   key={col}
-                                  className="px-3 py-2 text-gray-700 dark:text-gray-300 truncate max-w-24"
+                                  className="max-w-24 px-3 py-2 truncate text-white/80"
                                 >
                                   {String(row[col])}
                                 </td>
                               ))}
                               {parsedData.columns.length > 5 && (
-                                <td className="px-3 py-2 text-gray-400">...</td>
+                                <td className="px-3 py-2 text-white/40">...</td>
                               )}
                             </tr>
                           ))}
@@ -342,14 +343,14 @@ export const DataUploadPanel = ({
               )}
             </div>
 
-            <div className="flex items-center justify-end gap-3 border-t border-gray-200 px-6 py-4 dark:border-gray-700">
-              <Button variant="ghost" onClick={onClose}>
+            <div className="flex items-center justify-end gap-3 border-t border-white/10 px-6 py-4">
+              <Button variant="ghost" onClick={onClose} className="text-white/70 hover:text-white">
                 Cancel
               </Button>
               <Button
                 onClick={handleImport}
                 disabled={!parsedData || !datasetName}
-                className="gap-2"
+                className="gap-2 bg-primary-500 text-white hover:bg-primary-400 disabled:bg-white/10 disabled:text-white/40"
               >
                 Import Dataset
                 <ChevronRight className="h-4 w-4" />

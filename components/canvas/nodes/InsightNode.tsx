@@ -26,38 +26,38 @@ interface InsightNodeProps {
 const insightTypeConfig = {
   correlation: {
     icon: Link2,
-    bgColor: 'bg-blue-50 dark:bg-blue-900/20',
-    borderColor: 'border-blue-200 dark:border-blue-700',
-    iconColor: 'text-blue-500',
-    accentColor: 'bg-blue-500',
+    bgColor: 'bg-blue-500/10',
+    borderColor: 'border-blue-500/30',
+    iconColor: 'text-blue-300',
+    accentColor: 'bg-blue-400',
   },
   pattern: {
     icon: TrendingUp,
-    bgColor: 'bg-purple-50 dark:bg-purple-900/20',
-    borderColor: 'border-purple-200 dark:border-purple-700',
-    iconColor: 'text-purple-500',
-    accentColor: 'bg-purple-500',
+    bgColor: 'bg-purple-500/10',
+    borderColor: 'border-purple-500/30',
+    iconColor: 'text-purple-300',
+    accentColor: 'bg-purple-400',
   },
   anomaly: {
     icon: AlertTriangle,
-    bgColor: 'bg-red-50 dark:bg-red-900/20',
-    borderColor: 'border-red-200 dark:border-red-700',
-    iconColor: 'text-red-500',
-    accentColor: 'bg-red-500',
+    bgColor: 'bg-red-500/10',
+    borderColor: 'border-red-500/30',
+    iconColor: 'text-red-300',
+    accentColor: 'bg-red-400',
   },
   suggestion: {
     icon: Lightbulb,
-    bgColor: 'bg-amber-50 dark:bg-amber-900/20',
-    borderColor: 'border-amber-200 dark:border-amber-700',
-    iconColor: 'text-amber-500',
-    accentColor: 'bg-amber-500',
+    bgColor: 'bg-amber-500/10',
+    borderColor: 'border-amber-500/30',
+    iconColor: 'text-amber-200',
+    accentColor: 'bg-amber-400',
   },
   warning: {
     icon: AlertTriangle,
-    bgColor: 'bg-orange-50 dark:bg-orange-900/20',
-    borderColor: 'border-orange-200 dark:border-orange-700',
-    iconColor: 'text-orange-500',
-    accentColor: 'bg-orange-500',
+    bgColor: 'bg-orange-500/10',
+    borderColor: 'border-orange-500/30',
+    iconColor: 'text-orange-200',
+    accentColor: 'bg-orange-400',
   },
 };
 
@@ -106,7 +106,7 @@ export const InsightNode = ({
           'rounded-xl border-2 shadow-md transition-colors',
           config.bgColor,
           config.borderColor,
-          isSelected && 'ring-2 ring-offset-2 dark:ring-offset-gray-900',
+          isSelected && 'ring-2 ring-offset-2 ring-offset-[#1E1E1E]',
           isSelected && node.insightType === 'correlation' && 'ring-blue-500',
           isSelected && node.insightType === 'pattern' && 'ring-purple-500',
           isSelected && node.insightType === 'suggestion' && 'ring-amber-500',
@@ -124,18 +124,18 @@ export const InsightNode = ({
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5">
                 <InsightIcon className={cn('h-3.5 w-3.5', config.iconColor)} />
-                <span className="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <span className="text-xs font-medium uppercase tracking-wide text-white/60">
                   AI Insight
                 </span>
               </div>
-              <h4 className="mt-0.5 font-semibold text-gray-900 dark:text-gray-100 leading-tight">
+              <h4 className="mt-0.5 font-semibold leading-tight text-white">
                 {node.title}
               </h4>
             </div>
           </div>
           <button
             onClick={(e) => { e.stopPropagation(); onDismiss?.(node.id); }}
-            className="rounded p-0.5 text-gray-400 hover:bg-gray-200/50 hover:text-gray-600 dark:hover:bg-gray-700/50 dark:hover:text-gray-300"
+            className="rounded p-0.5 text-white/50 hover:bg-white/10 hover:text-white"
           >
             <X className="h-3.5 w-3.5" />
           </button>
@@ -143,7 +143,7 @@ export const InsightNode = ({
 
         <div className="px-3 pb-3">
           <p className={cn(
-            'text-sm text-gray-600 dark:text-gray-300 leading-relaxed',
+            'text-sm leading-relaxed text-white/80',
             !isExpanded && 'line-clamp-2'
           )}>
             {node.description}
@@ -152,7 +152,7 @@ export const InsightNode = ({
           {node.description.length > 100 && (
             <button
               onClick={(e) => { e.stopPropagation(); setIsExpanded(!isExpanded); }}
-              className="mt-1 text-xs font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+              className="mt-1 text-xs font-medium text-white/60 hover:text-white/80"
             >
               {isExpanded ? 'Show less' : 'Show more'}
             </button>
@@ -160,13 +160,13 @@ export const InsightNode = ({
 
           <div className="mt-3 flex items-center justify-between">
             <div className="flex items-center gap-1">
-              <div className="h-1.5 w-16 rounded-full bg-gray-200 dark:bg-gray-700">
+              <div className="h-1.5 w-16 rounded-full bg-white/10">
                 <div
                   className={cn('h-full rounded-full', config.accentColor)}
                   style={{ width: `${node.confidence * 100}%` }}
                 />
               </div>
-              <span className="text-xs text-gray-500">
+              <span className="text-xs text-white/60">
                 {Math.round(node.confidence * 100)}% conf.
               </span>
             </div>
@@ -175,7 +175,7 @@ export const InsightNode = ({
               onClick={(e) => { e.stopPropagation(); onApply?.(node.id); }}
               className={cn(
                 'flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium transition-colors',
-                'bg-white/50 text-gray-700 hover:bg-white dark:bg-gray-800/50 dark:text-gray-300 dark:hover:bg-gray-800'
+                'bg-white/10 text-white hover:bg-white/15'
               )}
             >
               Apply
@@ -185,7 +185,7 @@ export const InsightNode = ({
         </div>
       </motion.div>
 
-      <div className="absolute -left-1.5 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-gray-300 bg-white dark:border-gray-500 dark:bg-gray-700" />
+      <div className="absolute -left-1.5 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-white/20 bg-[#252525]" />
     </motion.div>
   );
 };

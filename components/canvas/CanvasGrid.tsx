@@ -12,9 +12,8 @@ export const CanvasGrid = ({ className }: CanvasGridProps) => {
       <div
         className={cn(
           'pointer-events-none absolute inset-0',
-          'bg-[radial-gradient(circle,_rgb(229_231_235)_1px,_transparent_1px)]',
-          'dark:bg-[radial-gradient(circle,_rgb(55_65_81)_1px,_transparent_1px)]',
-          'bg-[length:16px_16px]',
+          'bg-[radial-gradient(circle,_rgba(255,255,255,0.25)_1px,_transparent_1px)]',
+          'bg-[length:24px_24px]',
           className
         )}
       />
