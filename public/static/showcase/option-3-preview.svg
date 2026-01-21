@@ -1,0 +1,22 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0F172A"/>
+
+  <!-- Chart elements -->
+  <rect x="150" y="350" width="60" height="100" fill="#3b82f6" opacity="0.5"/>
+  <rect x="230" y="300" width="60" height="150" fill="#8b5cf6" opacity="0.5"/>
+  <rect x="310" y="280" width="60" height="170" fill="#06b6d4" opacity="0.5"/>
+  <rect x="390" y="320" width="60" height="130" fill="#10b981" opacity="0.5"/>
+  <rect x="470" y="340" width="60" height="110" fill="#f59e0b" opacity="0.5"/>
+  <rect x="550" y="310" width="60" height="140" fill="#ef4444" opacity="0.5"/>
+
+  <!-- Title -->
+  <text x="400" y="200" font-family="sans-serif" font-size="32" font-weight="300" fill="white" text-anchor="middle" opacity="0.9">
+    Data Visualization
+  </text>
+
+  <!-- Subtitle -->
+  <text x="400" y="235" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle" opacity="0.4">
+    Chart-driven design with energetic motion
+  </text>
+</svg>

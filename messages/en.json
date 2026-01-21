@@ -152,5 +152,21 @@
     "demo": "Demo",
     "features": "Features",
     "faq": "FAQ"
+  },
+  "landingShowcase": {
+    "directory": {
+      "title": "Landing Page Options",
+      "subtitle": "Choose a design direction for FeatureLab",
+      "option1Title": "Bold Gradient",
+      "option1Description": "Dynamic gradients with floating visualizations",
+      "option2Title": "Minimalist Focus",
+      "option2Description": "Clean lines with purposeful micro-interactions",
+      "option3Title": "Data Visualization",
+      "option3Description": "Chart-driven design with energetic motion"
+    },
+    "navigation": {
+      "backToDirectory": "Back to Options",
+      "viewOption": "View Design"
+    }
   }
 }
