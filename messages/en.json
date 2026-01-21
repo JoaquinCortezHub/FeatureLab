@@ -162,7 +162,9 @@
       "option2Title": "Minimalist Focus",
       "option2Description": "Clean lines with purposeful micro-interactions",
       "option3Title": "Data Visualization",
-      "option3Description": "Chart-driven design with energetic motion"
+      "option3Description": "Chart-driven design with energetic motion",
+      "option4Title": "Refined Balance",
+      "option4Description": "Minimalist aesthetics with data-driven insights"
     },
     "navigation": {
       "backToDirectory": "Back to Options",

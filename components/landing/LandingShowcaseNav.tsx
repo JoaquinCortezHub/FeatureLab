@@ -19,6 +19,7 @@ const options = [
   { value: 'option-1', labelKey: 'option1Title' },
   { value: 'option-2', labelKey: 'option2Title' },
   { value: 'option-3', labelKey: 'option3Title' },
+  { value: 'option-4', labelKey: 'option4Title' },
 ] as const;
 
 export const LandingShowcaseNav = ({

@@ -38,6 +38,13 @@ export default function ShowcaseDirectoryPage() {
       description: t('option3Description'),
       previewImage: '/static/showcase/option-3-preview.svg',
     },
+    {
+      id: 'option-4',
+      href: '/landing-showcase/option-4',
+      title: t('option4Title'),
+      description: t('option4Description'),
+      previewImage: '/static/showcase/option-4-preview.svg',
+    },
   ];
 
   return (
@@ -75,7 +82,7 @@ export default function ShowcaseDirectoryPage() {
             variants={stagger}
             initial="initial"
             animate="animate"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
             {options.map((option, index) => (
               <LandingShowcaseCard
