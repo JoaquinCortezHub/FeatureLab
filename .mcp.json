@@ -17,6 +17,10 @@
         "@upstash/context7-mcp"
       ],
       "env": {}
+    },
+    "supabase": {
+      "type": "http",
+      "url": "https://mcp.supabase.com/mcp?project_ref=ibgxzwiknhrliuqhhezd"
     }
   }
 }
