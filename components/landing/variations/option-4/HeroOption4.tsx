@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
-import { FloatingNodes } from '@/components/landing/FloatingNodes';
+import { HeroNodesOption4 } from './HeroNodesOption4';
 import { WaitlistForm } from '@/components/landing/WaitlistForm';
 
 const fadeIn = {
@@ -16,12 +16,8 @@ export const HeroOption4 = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* FloatingNodes as background - positioned to fill space without obstructing text */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-40">
-        <div className="w-full max-w-[1400px] h-full relative scale-125">
-          <FloatingNodes className="absolute inset-0" />
-        </div>
-      </div>
+      {/* Custom positioned nodes in empty spaces */}
+      <HeroNodesOption4 />
 
       {/* Minimal accent lines */}
       <div className="absolute inset-0 pointer-events-none">
