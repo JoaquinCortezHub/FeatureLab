@@ -29,6 +29,34 @@ export default function Option1Page() {
   const tUseCases = useTranslations('useCases');
   const tHowItWorks = useTranslations('howItWorks');
   const tCta = useTranslations('cta');
+  const tFaq = useTranslations('faq');
+
+  const faqItems = [
+    {
+      question: tFaq('items.whatIs.question'),
+      answer: tFaq('items.whatIs.answer'),
+    },
+    {
+      question: tFaq('items.aiInsights.question'),
+      answer: tFaq('items.aiInsights.answer'),
+    },
+    {
+      question: tFaq('items.fileFormats.question'),
+      answer: tFaq('items.fileFormats.answer'),
+    },
+    {
+      question: tFaq('items.security.question'),
+      answer: tFaq('items.security.answer'),
+    },
+    {
+      question: tFaq('items.pricing.question'),
+      answer: tFaq('items.pricing.answer'),
+    },
+    {
+      question: tFaq('items.availability.question'),
+      answer: tFaq('items.availability.answer'),
+    },
+  ];
 
   const steps = [
     {
@@ -251,7 +279,7 @@ export default function Option1Page() {
       {/* FAQ */}
       <section id="faq" className="relative py-24">
         <div className="max-w-4xl mx-auto px-6">
-          <FaqAccordion />
+          <FaqAccordion items={faqItems} />
         </div>
       </section>
 
