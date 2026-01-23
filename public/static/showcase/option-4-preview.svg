@@ -1,0 +1,32 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0F172A"/>
+
+  <!-- Minimal accent lines -->
+  <line x1="700" y1="100" x2="700" y2="250" stroke="#06b6d4" stroke-width="1" opacity="0.4"/>
+  <line x1="50" y1="350" x2="250" y2="350" stroke="#06b6d4" stroke-width="1" opacity="0.4"/>
+
+  <!-- Floating node circles (subtle) -->
+  <circle cx="150" cy="200" r="40" fill="#06b6d4" opacity="0.08"/>
+  <circle cx="300" cy="250" r="35" fill="#06b6d4" opacity="0.06"/>
+  <circle cx="450" cy="220" r="30" fill="#06b6d4" opacity="0.07"/>
+
+  <!-- Connection lines between circles -->
+  <line x1="150" y1="200" x2="300" y2="250" stroke="#06b6d4" stroke-width="1" opacity="0.15" stroke-dasharray="4 4"/>
+  <line x1="300" y1="250" x2="450" y2="220" stroke="#06b6d4" stroke-width="1" opacity="0.15" stroke-dasharray="4 4"/>
+
+  <!-- Stats visualization (small bars) -->
+  <rect x="600" y="320" width="30" height="40" fill="#06b6d4" opacity="0.3" rx="2"/>
+  <rect x="640" y="300" width="30" height="60" fill="#06b6d4" opacity="0.4" rx="2"/>
+  <rect x="680" y="310" width="30" height="50" fill="#06b6d4" opacity="0.35" rx="2"/>
+
+  <!-- Title -->
+  <text x="400" y="230" font-family="sans-serif" font-size="32" font-weight="500" fill="white" text-anchor="middle" opacity="0.9">
+    Refined Balance
+  </text>
+
+  <!-- Subtitle -->
+  <text x="400" y="270" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle" opacity="0.4">
+    Minimalist aesthetics with data-driven insights
+  </text>
+</svg>

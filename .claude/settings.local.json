@@ -1,7 +1,15 @@
 {
+  "permissions": {
+    "allow": [
+      "Skill(web-design-guidelines)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "supabase"
   ],
   "outputStyle": "Learning"
 }
+

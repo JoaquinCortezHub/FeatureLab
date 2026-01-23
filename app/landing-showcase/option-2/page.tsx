@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { Upload, Eye, Download } from 'lucide-react';
-import { Header } from '@/components/shared/Header';
+import { cn } from '@/lib/utils';
+import { LandingShowcaseNav } from '@/components/landing/LandingShowcaseNav';
 import { HeroOption2 } from '@/components/landing/variations/option-2/HeroOption2';
 import { FeaturesOption2 } from '@/components/landing/variations/option-2/FeaturesOption2';
 import { FaqAccordion } from '@/components/landing/FaqAccordion';
@@ -14,7 +15,7 @@ const fadeIn = {
   animate: { opacity: 1 },
 };
 
-export default function LandingPage() {
+export default function Option2Page() {
   const tHowItWorks = useTranslations('howItWorks');
   const tCta = useTranslations('cta');
   const tFaq = useTranslations('faq');
@@ -69,7 +70,7 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <Header variant="dark" />
+      <LandingShowcaseNav variant="option" />
 
       {/* Hero */}
       <HeroOption2 />

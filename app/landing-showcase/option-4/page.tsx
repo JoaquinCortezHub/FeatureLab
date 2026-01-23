@@ -3,9 +3,12 @@
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { Upload, Eye, Download } from 'lucide-react';
-import { Header } from '@/components/shared/Header';
-import { HeroOption2 } from '@/components/landing/variations/option-2/HeroOption2';
+import { cn } from '@/lib/utils';
+import { LandingShowcaseNav } from '@/components/landing/LandingShowcaseNav';
+import { HeroOption4 } from '@/components/landing/variations/option-4/HeroOption4';
+import { StatsCounterOption3 } from '@/components/landing/variations/option-3/StatsCounterOption3';
 import { FeaturesOption2 } from '@/components/landing/variations/option-2/FeaturesOption2';
+import { UserPersonas } from '@/components/landing/UserPersonas';
 import { FaqAccordion } from '@/components/landing/FaqAccordion';
 import { WaitlistForm } from '@/components/landing/WaitlistForm';
 
@@ -14,7 +17,16 @@ const fadeIn = {
   animate: { opacity: 1 },
 };
 
-export default function LandingPage() {
+const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+export default function Option4Page() {
+  const tUseCases = useTranslations('useCases');
   const tHowItWorks = useTranslations('howItWorks');
   const tCta = useTranslations('cta');
   const tFaq = useTranslations('faq');
@@ -69,13 +81,59 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <Header variant="dark" />
+      <LandingShowcaseNav variant="option" />
 
       {/* Hero */}
-      <HeroOption2 />
+      <HeroOption4 />
+
+      {/* Stats */}
+      <StatsCounterOption3 />
 
       {/* Features */}
       <FeaturesOption2 />
+
+      {/* User Personas */}
+      <section className="relative py-32 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={stagger}
+            className="mb-16"
+          >
+            <motion.div
+              variants={fadeIn}
+              transition={{ duration: 0.6 }}
+              className="mb-4"
+            >
+              <span className="inline-block px-4 py-1.5 rounded-md border border-cyan-500/30 text-cyan-400 text-xs font-medium uppercase tracking-wider">
+                {tUseCases('label')}
+              </span>
+            </motion.div>
+
+            <motion.h2
+              variants={fadeIn}
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl font-medium text-white mb-4"
+              style={{ textWrap: 'balance' } as React.CSSProperties}
+            >
+              {tUseCases('title')}{' '}
+              <span className="text-cyan-400">{tUseCases('titleHighlight')}</span>
+            </motion.h2>
+
+            <motion.p
+              variants={fadeIn}
+              transition={{ duration: 0.6 }}
+              className="text-lg text-white/30 max-w-3xl"
+            >
+              {tUseCases('description')}
+            </motion.p>
+          </motion.div>
+
+          <UserPersonas />
+        </div>
+      </section>
 
       {/* How It Works */}
       <section id="how-it-works" className="relative py-32">
