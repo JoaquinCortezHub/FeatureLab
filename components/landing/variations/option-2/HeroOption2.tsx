@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { WaitlistForm } from '../../WaitlistForm';
 
 const fadeIn = {
   initial: { opacity: 0 },
@@ -56,7 +57,11 @@ export const HeroOption2 = () => {
             {t('description')}
           </motion.p>
 
-          {/* CTA Button */}
+          <div className="pt-4 max-w-md mx-auto">
+            <WaitlistForm />
+          </div>
+
+          {/* CTA Button
           <motion.div
             variants={fadeIn}
             transition={{ duration: 0.6 }}
@@ -84,7 +89,7 @@ export const HeroOption2 = () => {
             </Link>
 
             <p className="mt-4 text-sm text-white/30">{t('noSignup')}</p>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
 
         {/* Scroll indicator */}
