@@ -60,6 +60,8 @@
     "description": "Whether you're new to a domain or racing against deadlines, FeatureLab adapts to your workflow."
   },
   "personas": {
+    "title": "Built for",
+    "titleHighlight": "your workflow",
     "labels": {
       "challenge": "Challenge",
       "solution": "Solution"

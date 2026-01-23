@@ -60,6 +60,8 @@
     "description": "Ya sea que seas nuevo en un dominio o estés contra el reloj, FeatureLab se adapta a tu flujo de trabajo."
   },
   "personas": {
+    "title": "Construido para",
+    "titleHighlight": "tu flujo de trabajo",
     "labels": {
       "challenge": "Desafío",
       "solution": "Solución"

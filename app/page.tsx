@@ -8,6 +8,7 @@ import { HeroOption2 } from '@/components/landing/variations/option-2/HeroOption
 import { FeaturesOption2 } from '@/components/landing/variations/option-2/FeaturesOption2';
 import { FaqAccordion } from '@/components/landing/FaqAccordion';
 import { WaitlistForm } from '@/components/landing/WaitlistForm';
+import { UserPersonas } from '@/components/landing/UserPersonas';
 
 const fadeIn = {
   initial: { opacity: 0 },
@@ -16,6 +17,7 @@ const fadeIn = {
 
 export default function LandingPage() {
   const tHowItWorks = useTranslations('howItWorks');
+  const tPersonas = useTranslations('personas');
   const tCta = useTranslations('cta');
   const tFaq = useTranslations('faq');
 
@@ -127,9 +129,50 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* User Personas */}
+      <section className="relative py-32 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={fadeIn}
+            transition={{ duration: 0.6 }}
+            className="mb-20"
+          >
+            <h2
+              className="text-4xl md:text-5xl font-medium text-white"
+              style={{ textWrap: 'balance' } as React.CSSProperties}
+            >
+              {tPersonas('title')}{' '}
+              <span className="text-cyan-400">{tPersonas('titleHighlight')}</span>
+            </h2>
+          </motion.div>
+
+          <UserPersonas />
+        </div>
+      </section>
+
       {/* FAQ */}
       <section id="faq" className="relative py-32 border-t border-white/5">
         <div className="max-w-4xl mx-auto px-6">
+          <motion.div
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={fadeIn}
+            transition={{ duration: 0.6 }}
+            className="mb-16"
+          >
+            <h2
+              className="text-4xl md:text-5xl font-medium text-white"
+              style={{ textWrap: 'balance' } as React.CSSProperties}
+            >
+              {tFaq('title')}{' '}
+              <span className="text-cyan-400">{tFaq('titleHighlight')}</span>
+            </h2>
+          </motion.div>
+
           <FaqAccordion items={faqItems} />
         </div>
       </section>
