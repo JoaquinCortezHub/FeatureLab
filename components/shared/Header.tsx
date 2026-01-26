@@ -31,6 +31,7 @@ export const Header = ({ className, variant = 'dark' }: HeaderProps) => {
   const navItems = [
     { label: t('features'), href: '#features' },
     { label: t('howItWorks'), href: '#how-it-works' },
+    { label: t('personas'), href: '#personas' },
     { label: t('faq'), href: '#faq' },
   ];
 

@@ -30,6 +30,7 @@ const PersonaCard = ({ persona, index }: PersonaCardProps) => {
       transition={{ delay: index * 0.1 }}
       className="group relative"
     >
+      <div id='personas'></div>
       <div className="relative h-full rounded-xl border border-white/10 bg-white/[0.02] p-8 hover:bg-white/[0.03] hover:border-white/15 transition-all duration-300">
         {/* Top accent line */}
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
