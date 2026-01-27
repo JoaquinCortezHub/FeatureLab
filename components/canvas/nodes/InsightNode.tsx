@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, PanInfo } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Sparkles,
   Link2,
@@ -13,11 +13,13 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { InsightNodeData, Position } from '@/components/canvas/models/canvas-types';
+import { useDraggableNode } from '@/components/canvas/hooks/useDraggableNode';
 
 interface InsightNodeProps {
   node: InsightNodeData;
   isSelected?: boolean;
   onSelect?: (nodeId: string) => void;
+  /** @deprecated Position changes are now handled by DndCanvasProvider */
   onPositionChange?: (nodeId: string, position: Position) => void;
   onDismiss?: (nodeId: string) => void;
   onApply?: (nodeId: string) => void;
@@ -65,41 +67,44 @@ export const InsightNode = ({
   node,
   isSelected = false,
   onSelect,
-  onPositionChange,
   onDismiss,
   onApply,
 }: InsightNodeProps) => {
-  const [isDragging, setIsDragging] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const {
+    setNodeRef,
+    listeners,
+    attributes,
+    isDragging,
+    transform,
+  } = useDraggableNode({
+    id: node.id,
+    position: node.position,
+  });
+
   const config = insightTypeConfig[node.insightType];
   const InsightIcon = config.icon;
 
-  const handleDragStart = () => setIsDragging(true);
-
-  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    setIsDragging(false);
-    onPositionChange?.(node.id, {
-      x: node.position.x + info.offset.x,
-      y: node.position.y + info.offset.y,
-    });
-  };
-
   return (
     <motion.div
+      ref={setNodeRef}
       className={cn(
-        'absolute cursor-grab select-none',
-        isDragging && 'cursor-grabbing z-50',
-        isSelected && 'z-40'
+        'absolute cursor-grab select-none touch-none',
+        isDragging && 'z-50 cursor-grabbing',
+        isSelected && !isDragging && 'z-40'
       )}
-      style={{ left: node.position.x, top: node.position.y }}
-      drag
-      dragMomentum={false}
-      onDragStart={handleDragStart}
-      onDragEnd={handleDragEnd}
+      style={{
+        left: node.position.x,
+        top: node.position.y,
+        transform,
+      }}
       onClick={(e) => { e.stopPropagation(); onSelect?.(node.id); }}
-      whileHover={{ scale: 1.01 }}
-      whileDrag={{ scale: 1.03 }}
+      whileHover={{ scale: isDragging ? 1 : 1.01 }}
+      animate={{ scale: isDragging ? 1 : 1 }}
       layout
+      {...listeners}
+      {...attributes}
     >
       <motion.div
         className={cn(
@@ -110,8 +115,7 @@ export const InsightNode = ({
           isSelected && node.insightType === 'correlation' && 'ring-blue-500',
           isSelected && node.insightType === 'pattern' && 'ring-purple-500',
           isSelected && node.insightType === 'suggestion' && 'ring-amber-500',
-          isSelected && node.insightType === 'warning' && 'ring-orange-500',
-          isDragging && 'shadow-xl'
+          isSelected && node.insightType === 'warning' && 'ring-orange-500'
         )}
         style={{ width: isExpanded ? 280 : 240 }}
         layout

@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, PanInfo } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Hash, Type, Calendar, ToggleLeft, FileText, TrendingUp, MoreVertical } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { FeatureNodeData, Position, DataType } from '@/components/canvas/models/canvas-types';
+import { useDraggableNode } from '@/components/canvas/hooks/useDraggableNode';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +16,7 @@ interface FeatureNodeProps {
   node: FeatureNodeData;
   isSelected?: boolean;
   onSelect?: (nodeId: string) => void;
+  /** @deprecated Position changes are now handled by DndCanvasProvider */
   onPositionChange?: (nodeId: string, position: Position) => void;
   onVisualize?: (nodeId: string) => void;
 }
@@ -32,22 +33,20 @@ export const FeatureNode = ({
   node,
   isSelected = false,
   onSelect,
-  onPositionChange,
-  onVisualize,
 }: FeatureNodeProps) => {
-  const [isDragging, setIsDragging] = useState(false);
+  const {
+    setNodeRef,
+    listeners,
+    attributes,
+    isDragging,
+    transform,
+  } = useDraggableNode({
+    id: node.id,
+    position: node.position,
+  });
+
   const typeConfig = dataTypeConfig[node.stats.dataType];
   const TypeIcon = typeConfig.icon;
-
-  const handleDragStart = () => setIsDragging(true);
-
-  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    setIsDragging(false);
-    onPositionChange?.(node.id, {
-      x: node.position.x + info.offset.x,
-      y: node.position.y + info.offset.y,
-    });
-  };
 
   const importanceColor = node.importance
     ? node.importance > 0.7
@@ -59,27 +58,29 @@ export const FeatureNode = ({
 
   return (
     <motion.div
+      ref={setNodeRef}
       className={cn(
-        'absolute cursor-grab select-none',
-        isDragging && 'cursor-grabbing z-50',
-        isSelected && 'z-40'
+        'absolute cursor-grab select-none touch-none',
+        isDragging && 'z-50 cursor-grabbing',
+        isSelected && !isDragging && 'z-40'
       )}
-      style={{ left: node.position.x, top: node.position.y }}
-      drag
-      dragMomentum={false}
-      onDragStart={handleDragStart}
-      onDragEnd={handleDragEnd}
+      style={{
+        left: node.position.x,
+        top: node.position.y,
+        transform,
+      }}
       onClick={(e) => { e.stopPropagation(); onSelect?.(node.id); }}
-      whileHover={{ scale: 1.02 }}
-      whileDrag={{ scale: 1.04 }}
+      whileHover={{ scale: isDragging ? 1 : 1.02 }}
+      animate={{ scale: isDragging ? 1 : 1 }}
+      {...listeners}
+      {...attributes}
     >
       <div
         className={cn(
           'w-48 rounded-lg border shadow-sm transition-all',
           'bg-[#252525]',
           'border-white/10',
-          isSelected && 'ring-2 ring-secondary-500 ring-offset-2 ring-offset-[#1E1E1E]',
-          isDragging && 'shadow-lg'
+          isSelected && 'ring-2 ring-secondary-500 ring-offset-2 ring-offset-[#1E1E1E]'
         )}
       >
         <div className="flex items-center justify-between border-b border-white/10 bg-white/5 px-3 py-2">

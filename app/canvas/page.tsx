@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react';
 import { CanvasLayout } from '@/components/canvas/CanvasLayout';
 import { WorkflowCanvas } from '@/components/canvas/WorkflowCanvas';
+import { DndCanvasProvider } from '@/components/canvas/DndCanvasProvider';
 import { CanvasConnectionsLayer } from '@/components/canvas/CanvasConnection';
 import { CanvasMinimap } from '@/components/canvas/CanvasMinimap';
 import { FloatingPanel } from '@/components/canvas/FloatingPanel';
@@ -12,6 +13,7 @@ import { DatasetNode } from '@/components/canvas/nodes/DatasetNode';
 import { FeatureNode } from '@/components/canvas/nodes/FeatureNode';
 import { InsightNode } from '@/components/canvas/nodes/InsightNode';
 import { ChartNode } from '@/components/canvas/nodes/ChartNode';
+import { CanvasDragFeedback } from '@/components/canvas/CanvasDragFeedback';
 import {
   sampleWorkflowData,
   floatingPanelItems,
@@ -66,6 +68,15 @@ export default function CanvasPage() {
       setHasUnsavedChanges(true);
     },
     []
+  );
+
+  // Helper for DndCanvasProvider to get current node position
+  const getNodePosition = useCallback(
+    (nodeId: string): Position | undefined => {
+      const node = nodes.find((n) => n.id === nodeId);
+      return node?.position;
+    },
+    [nodes]
   );
 
   const handleConnectionClick = useCallback((connectionId: string) => {
@@ -227,39 +238,48 @@ export default function CanvasPage() {
       onExport={handleExport}
       onSave={handleSave}
     >
-      <WorkflowCanvas onViewportChange={handleViewportChange}>
-        <div
-          onClick={handleCanvasClick}
-          onContextMenu={(e) => {
-            e.preventDefault();
-            if (!isEmpty) {
-              setFloatingPanel({
-                isOpen: true,
-                position: { x: e.clientX, y: e.clientY },
-              });
-            }
-          }}
-          className="relative min-h-screen min-w-[1400px]"
-        >
-          {isEmpty ? (
-            <EmptyCanvasState
-              onImportData={handleImportData}
-              onLoadSample={handleLoadSample}
-            />
-          ) : (
-            <>
-              <CanvasConnectionsLayer
-                connections={connections}
-                nodes={nodes}
-                selectedConnectionId={selectedConnectionId}
-                onConnectionClick={handleConnectionClick}
+      <DndCanvasProvider
+        zoom={viewport.zoom}
+        nodes={nodes}
+        onNodePositionChange={handleNodePositionChange}
+        getNodePosition={getNodePosition}
+      >
+        <WorkflowCanvas onViewportChange={handleViewportChange}>
+          <div
+            onClick={handleCanvasClick}
+            onContextMenu={(e) => {
+              e.preventDefault();
+              if (!isEmpty) {
+                setFloatingPanel({
+                  isOpen: true,
+                  position: { x: e.clientX, y: e.clientY },
+                });
+              }
+            }}
+            className="relative min-h-screen min-w-[1400px]"
+          >
+            {isEmpty ? (
+              <EmptyCanvasState
+                onImportData={handleImportData}
+                onLoadSample={handleLoadSample}
               />
+            ) : (
+              <>
+                <CanvasDragFeedback />
 
-              {nodes.map(renderNode)}
-            </>
-          )}
-        </div>
-      </WorkflowCanvas>
+                <CanvasConnectionsLayer
+                  connections={connections}
+                  nodes={nodes}
+                  selectedConnectionId={selectedConnectionId}
+                  onConnectionClick={handleConnectionClick}
+                />
+
+                {nodes.map(renderNode)}
+              </>
+            )}
+          </div>
+        </WorkflowCanvas>
+      </DndCanvasProvider>
 
       {!isEmpty && (
         <CanvasMinimap

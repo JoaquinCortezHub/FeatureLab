@@ -7,12 +7,19 @@ import {
   CanvasNodeData,
   Position,
 } from '@/components/canvas/models/canvas-types';
+import { useDndCanvas } from '@/components/canvas/DndCanvasProvider';
+
+interface DragOffset {
+  activeId: string | null;
+  offset: Position | null;
+}
 
 interface CanvasConnectionProps {
   connection: ConnectionType;
   nodes: CanvasNodeData[];
   isSelected?: boolean;
   onClick?: (connectionId: string) => void;
+  dragOffset?: DragOffset;
 }
 
 const NODE_WIDTHS: Record<string, number> = {
@@ -69,19 +76,23 @@ const getNodeDimensions = (node: CanvasNodeData) => ({
   height: NODE_HEIGHTS[node.type] || 150,
 });
 
-const getOutputPoint = (node: CanvasNodeData): Position => {
+const getOutputPoint = (node: CanvasNodeData, dragOffset?: DragOffset): Position => {
   const dims = getNodeDimensions(node);
+  const offsetX = dragOffset?.activeId === node.id && dragOffset.offset ? dragOffset.offset.x : 0;
+  const offsetY = dragOffset?.activeId === node.id && dragOffset.offset ? dragOffset.offset.y : 0;
   return {
-    x: node.position.x + dims.width,
-    y: node.position.y + dims.height / 2,
+    x: node.position.x + dims.width + offsetX,
+    y: node.position.y + dims.height / 2 + offsetY,
   };
 };
 
-const getInputPoint = (node: CanvasNodeData): Position => {
+const getInputPoint = (node: CanvasNodeData, dragOffset?: DragOffset): Position => {
   const dims = getNodeDimensions(node);
+  const offsetX = dragOffset?.activeId === node.id && dragOffset.offset ? dragOffset.offset.x : 0;
+  const offsetY = dragOffset?.activeId === node.id && dragOffset.offset ? dragOffset.offset.y : 0;
   return {
-    x: node.position.x,
-    y: node.position.y + dims.height / 2,
+    x: node.position.x + offsetX,
+    y: node.position.y + dims.height / 2 + offsetY,
   };
 };
 
@@ -102,6 +113,7 @@ export const CanvasConnection = ({
   nodes,
   isSelected = false,
   onClick,
+  dragOffset,
 }: CanvasConnectionProps) => {
   const sourceNode = nodes.find((n) => n.id === connection.sourceId);
   const targetNode = nodes.find((n) => n.id === connection.targetId);
@@ -111,8 +123,8 @@ export const CanvasConnection = ({
       return null;
     }
 
-    const start = getOutputPoint(sourceNode);
-    const end = getInputPoint(targetNode);
+    const start = getOutputPoint(sourceNode, dragOffset);
+    const end = getInputPoint(targetNode, dragOffset);
 
     return {
       path: generateBezierPath(start, end),
@@ -123,7 +135,7 @@ export const CanvasConnection = ({
         y: (start.y + end.y) / 2,
       },
     };
-  }, [sourceNode, targetNode]);
+  }, [sourceNode, targetNode, dragOffset]);
 
   if (!pathData) {
     return null;
@@ -194,6 +206,13 @@ export const CanvasConnectionsLayer = ({
   selectedConnectionId,
   onConnectionClick,
 }: CanvasConnectionsLayerProps) => {
+  // Get drag state from context to make connections follow dragged nodes
+  const { dragState } = useDndCanvas();
+
+  const dragOffset: DragOffset = {
+    activeId: dragState.activeId,
+    offset: dragState.currentOffset,
+  };
   const svgBounds = useMemo(() => {
     if (nodes.length === 0) {
       return { width: 1400, height: 800 };
@@ -242,6 +261,7 @@ export const CanvasConnectionsLayer = ({
             nodes={nodes}
             isSelected={selectedConnectionId === connection.id}
             onClick={onConnectionClick}
+            dragOffset={dragOffset}
           />
         ))}
       </g>
